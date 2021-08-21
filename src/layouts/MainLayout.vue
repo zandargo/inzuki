@@ -1,36 +1,34 @@
 <template>
-	<q-layout view="lHh Lpr lFf">
-		<q-header elevated reveal class="bg-primary text-white" height-hint="98">
+	<q-layout view="hHh lpR fFf">
+		<q-header
+			elevated
+			class="bg-primary text-white q-electron-drag"
+			height-hint="98"
+		>
 			<q-toolbar>
 				<q-btn
 					flat
 					dense
 					round
+					class="absolute q-electron-drag--exception"
 					icon="menu"
 					aria-label="Menu"
 					@click="toggleLeftDrawer"
 				/>
 
-				<q-toolbar-title class="q-electron-drag">
-					Inzuki App
-				</q-toolbar-title>
-
-				<div>Quasar v{{ $q.version }}</div>
+				<q-toolbar-title class="text-center"> Inzuki App </q-toolbar-title>
 			</q-toolbar>
 		</q-header>
 
 		<q-drawer
 			v-model="leftDrawerOpen"
-			show-if-above
-			bordered
 			overlay
-			class="bg-grey-1"
+			elevated
+			class="bg-blue-grey-1"
+			behavior="mobile"
 		>
 			<q-list>
-				<q-item-label header class="text-grey-8">
-					Essential Links
-				</q-item-label>
-
+				<div class="q-mt-xl q-py-sm"></div>
 				<EssentialLink
 					v-for="link in essentialLinks"
 					:key="link.title"
@@ -38,6 +36,21 @@
 				/>
 			</q-list>
 		</q-drawer>
+
+		<q-footer class="flex flex-center q-pa-none">
+			<q-toolbar>
+				<q-btn
+					flat
+					dense
+					round
+					class="q-my-none q-mx-auto"
+					size="md"
+					icon="home"
+					aria-label="Home"
+					:to="{ name: 'index' }"
+				/>
+			</q-toolbar>
+		</q-footer>
 
 		<q-page-container>
 			<router-view />
@@ -50,46 +63,16 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
 	{
-		title: "Docs",
-		caption: "quasar.dev",
+		title: "Page 1",
+		caption: "Go to next page",
 		icon: "school",
-		link: "https://quasar.dev",
+		route: "page1",
 	},
 	{
-		title: "Github",
-		caption: "github.com/quasarframework",
+		title: "Page 2",
+		caption: "Go to other page",
 		icon: "code",
-		link: "https://github.com/quasarframework",
-	},
-	{
-		title: "Discord Chat Channel",
-		caption: "chat.quasar.dev",
-		icon: "chat",
-		link: "https://chat.quasar.dev",
-	},
-	{
-		title: "Forum",
-		caption: "forum.quasar.dev",
-		icon: "record_voice_over",
-		link: "https://forum.quasar.dev",
-	},
-	{
-		title: "Twitter",
-		caption: "@quasarframework",
-		icon: "rss_feed",
-		link: "https://twitter.quasar.dev",
-	},
-	{
-		title: "Facebook",
-		caption: "@QuasarFramework",
-		icon: "public",
-		link: "https://facebook.quasar.dev",
-	},
-	{
-		title: "Quasar Awesome",
-		caption: "Community Quasar projects",
-		icon: "favorite",
-		link: "https://awesome.quasar.dev",
+		route: "page2",
 	},
 ];
 
