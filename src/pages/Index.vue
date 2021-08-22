@@ -1,5 +1,15 @@
 <template>
-	<div><q-page>HOME</q-page></div>
+	<div>
+		<q-page>
+			<div>
+				<q-card class="title-card q-ma-sm" bordered elevated>
+					<q-card-section class="text-center q-pa-sm">
+						SEG, 23/08/2021
+					</q-card-section>
+				</q-card>
+			</div>
+		</q-page>
+	</div>
 </template>
 
 <script>
@@ -9,3 +19,10 @@ export default defineComponent({
 	name: "PageIndex",
 });
 </script>
+
+<style lang="scss" scoped>
+.my-card {
+	width: 100%;
+	// max-width: 250px;
+}
+</style>

@@ -11,19 +11,21 @@
 					dense
 					round
 					class="q-electron-drag--exception"
-					size="24px"
+					size="22px"
 					icon="menu"
 					aria-label="Menu"
 					@click="toggleLeftDrawer"
 				/>
 
-				<q-toolbar-title class="text-center"> INZUKI </q-toolbar-title>
+				<q-toolbar-title class="text-center text-bold q-mt-sm">
+					INZUKI
+				</q-toolbar-title>
 
 				<q-btn
 					flat
 					dense
 					round
-					size="md"
+					size="22px"
 					icon="home"
 					aria-label="Home"
 					:to="{ name: 'index' }"
@@ -48,7 +50,14 @@
 			</q-list>
 		</q-drawer>
 
-		<q-footer class="flex flex-center q-pa-none">
+		<q-footer
+			class="flex flex-center q-pa-none bg-black"
+			style="
+				 {
+					heigth: '60px';
+				}
+			"
+		>
 			<q-toolbar> </q-toolbar>
 		</q-footer>
 
@@ -63,15 +72,21 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
 	{
-		title: "Page 1",
-		caption: "Go to next page",
-		icon: "school",
+		title: "PERFIL DO USUÁRIO",
+		caption: "Informações do usuário",
+		icon: "face",
 		route: "page1",
 	},
 	{
-		title: "Page 2",
-		caption: "Go to other page",
-		icon: "code",
+		title: "CONFIGURAÇÕES",
+		caption: "Funcionamento do app",
+		icon: "settings",
+		route: "page1",
+	},
+	{
+		title: "NOTIFICAÇÕES",
+		caption: "Defina lembretes e alarmes",
+		icon: "notifications",
 		route: "page2",
 	},
 ];
