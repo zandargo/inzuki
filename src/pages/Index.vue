@@ -1,5 +1,5 @@
 <template>
-	<div><q-page class="flex flex-center">HOME</q-page></div>
+	<div><q-page>HOME</q-page></div>
 </template>
 
 <script>

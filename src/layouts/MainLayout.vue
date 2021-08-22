@@ -10,13 +10,24 @@
 					flat
 					dense
 					round
-					class="absolute q-electron-drag--exception"
+					class="q-electron-drag--exception"
+					size="24px"
 					icon="menu"
 					aria-label="Menu"
 					@click="toggleLeftDrawer"
 				/>
 
-				<q-toolbar-title class="text-center"> Inzuki App </q-toolbar-title>
+				<q-toolbar-title class="text-center"> INZUKI </q-toolbar-title>
+
+				<q-btn
+					flat
+					dense
+					round
+					size="md"
+					icon="home"
+					aria-label="Home"
+					:to="{ name: 'index' }"
+				/>
 			</q-toolbar>
 		</q-header>
 
@@ -38,18 +49,7 @@
 		</q-drawer>
 
 		<q-footer class="flex flex-center q-pa-none">
-			<q-toolbar>
-				<q-btn
-					flat
-					dense
-					round
-					class="q-my-none q-mx-auto"
-					size="md"
-					icon="home"
-					aria-label="Home"
-					:to="{ name: 'index' }"
-				/>
-			</q-toolbar>
+			<q-toolbar> </q-toolbar>
 		</q-footer>
 
 		<q-page-container>
