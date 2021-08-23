@@ -1,8 +1,8 @@
 <template>
-	<q-layout view="hHh lpR fFf">
+	<q-layout view="hHh lpR fFf" class="">
 		<q-header
 			elevated
-			class="bg-primary text-white q-electron-drag"
+			class="bg-primary text-white q-electron-drag no-scroll"
 			height-hint="98"
 		>
 			<q-toolbar>
@@ -81,13 +81,19 @@ const linksList = [
 		title: "CONFIGURAÇÕES",
 		caption: "Funcionamento do app",
 		icon: "settings",
-		route: "page1",
+		route: "page2",
 	},
 	{
 		title: "NOTIFICAÇÕES",
 		caption: "Defina lembretes e alarmes",
 		icon: "notifications",
-		route: "page2",
+		route: "page3",
+	},
+	{
+		title: "TESTE 1",
+		caption: "Splash Screen",
+		icon: "visibility",
+		route: "SplashScreen",
 	},
 ];
 
