@@ -3,6 +3,7 @@
 		<svg id="svg-splash" :width="win.width" :height="win.height">
 			//* CIRCLE 01 - OUTER CIRCLE
 			<circle
+				id="circ01"
 				cx="50%"
 				cy="50%"
 				:r="shapes.circle01.radius"
@@ -38,7 +39,13 @@
 				/>
 			</circle>
 			//* CIRCLE 02 - CLOCK CIRCLE 01
+			<!-- <use
+				xlink:href="#circ02"
+				stroke="#333333"
+				transform="translate(20 20)"
+			/> -->
 			<circle
+				id="circ02"
 				cx="50%"
 				cy="50%"
 				stroke="#263238"
@@ -83,8 +90,10 @@
 					repeatCount="indefinite"
 				/>
 			</circle>
+
 			//* CIRCLE 03 - CLOCK CIRCLE 02
 			<circle
+				id="circ03"
 				cx="50%"
 				cy="50%"
 				stroke="#263238"
