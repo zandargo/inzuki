@@ -43,7 +43,7 @@
 				cy="50%"
 				stroke="#263238"
 				stroke-linecap="butt"
-				r="20%"
+				:r="shapes.circle02.radius"
 				:stroke-dasharray="shapes.circle02.dasharray0"
 				:stroke-dashoffset="shapes.circle02.dashoffset0"
 				:stroke-width="shapes.circle02.strokewidth"
@@ -55,7 +55,7 @@
 					:from="shapes.circle02.dasharray0"
 					:to="shapes.circle02.dasharray1"
 					:dur="shapes.circle02.anim.duration"
-					begin="0s;circ02_anim1.end+2s"
+					begin="0s;circ02_anim1.end+4s"
 				/>
 				<animate
 					id="circ02_anim2"
@@ -63,7 +63,7 @@
 					:from="shapes.circle02.dasharray1"
 					:to="shapes.circle02.dasharray0"
 					:dur="shapes.circle02.anim.duration"
-					begin="2s;circ02_anim2.end+2s"
+					begin="4s;circ02_anim2.end+4s"
 				/>
 				<animate
 					id="circ02_anim3"
@@ -71,7 +71,7 @@
 					:from="shapes.circle02.dashoffset0"
 					:to="shapes.circle02.dashoffset1"
 					:dur="shapes.circle02.anim.duration"
-					begin="2s;circ02_anim3.end+2s"
+					begin="4s;circ02_anim3.end+4s"
 				/>
 				<animateTransform
 					attributeName="transform"
@@ -79,7 +79,7 @@
 					type="rotate"
 					from="0 180 320"
 					to="360 180 320"
-					dur="5s"
+					dur="4s"
 					repeatCount="indefinite"
 				/>
 			</circle>
@@ -89,7 +89,7 @@
 				cy="50%"
 				stroke="#263238"
 				stroke-linecap="butt"
-				r="16%"
+				:r="shapes.circle03.radius"
 				:stroke-dasharray="shapes.circle03.dasharray0"
 				:stroke-dashoffset="shapes.circle03.dashoffset0"
 				:stroke-width="shapes.circle03.strokewidth"
@@ -211,7 +211,7 @@ export default {
 					strokewidth: "",
 					fill: "",
 					anim: {
-						duration: "2s",
+						duration: "4s",
 						begin: "0s",
 					},
 				},
@@ -257,43 +257,45 @@ export default {
 			let len = 0;
 			let gap = 0;
 
+			this.shapes.circle01.stroke = this.color1;
+			this.shapes.circle03.stroke = this.color1;
+			this.shapes.circle02.stroke = this.color1;
 			//* Bigger circle
-			radius = parseInt(base * 0.5, 10);
+			radius = Math.round(base * 0.5);
 			ang = pi / 4;
-			len = parseInt(2 * radius * pi, 10);
-			gap = parseInt(2 * radius * ang, 10);
+			len = Math.round(2 * radius * pi);
+			gap = Math.round(2 * radius * ang);
 			this.shapes.circle01.radius = radius + "px";
 			this.shapes.circle01.dasharray0 = "0 " + len;
 			this.shapes.circle01.dasharray1 = len + " 0";
 			this.shapes.circle01.dashoffset0 = gap;
 			this.shapes.circle01.dashoffset1 = gap - len;
-			this.shapes.circle01.stroke = this.color1;
 			this.shapes.circle01.strokewidth = 2 * radius + "px";
 			this.shapes.circle01.fill = "none";
-			//* Clock outer circle
-			radius = parseInt(base * 0.2, 10);
-			ang = pi / 6;
-			len = parseInt(2 * radius * pi, 10);
-			gap = parseInt(2 * radius * ang, 10);
+			//* Clock circle 1
+			radius = Math.round(base * 0.16);
+			ang = pi / 4;
+			len = Math.round(2 * radius * pi);
+			// gap = Math.round(2 * radius * ang);
+			gap = 0;
 			this.shapes.circle02.radius = radius + "px";
 			this.shapes.circle02.dasharray0 = "0 " + len;
 			this.shapes.circle02.dasharray1 = len + " 0";
 			this.shapes.circle02.dashoffset0 = gap;
 			this.shapes.circle02.dashoffset1 = gap - len;
-			this.shapes.circle02.stroke = this.color1;
 			this.shapes.circle02.strokewidth = "16px";
 			this.shapes.circle02.fill = "none";
-			//* Clock inner circle
-			radius = parseInt(base * 0.16, 10);
+			//* Clock circle 2
+			radius = Math.round(base * 0.2);
 			ang = pi / 4;
-			len = parseInt(2 * radius * pi, 10);
-			gap = parseInt(2 * radius * ang, 10);
+			len = Math.round(2 * radius * pi);
+			// gap = Math.round(2 * radius * ang) + 1;
+			gap = 0;
 			this.shapes.circle03.radius = radius + "px";
 			this.shapes.circle03.dasharray0 = "0 " + len;
 			this.shapes.circle03.dasharray1 = len + " 0";
 			this.shapes.circle03.dashoffset0 = gap;
 			this.shapes.circle03.dashoffset1 = gap - len;
-			this.shapes.circle03.stroke = this.color1;
 			this.shapes.circle03.strokewidth = "12px";
 			this.shapes.circle03.fill = "none";
 		},
