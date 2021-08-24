@@ -198,10 +198,36 @@
 			>
 				INZUKI
 			</text>
-
+			<mask id="txtMask" maskContentUnits="objectBoundingBox">
+				<rect fill="white" x="0" y="0" width="100%" height="100%" />
+				<rect fill="black" x="-50%" y="-50%" width="100%" height="100%">
+					<animateTransform
+						id="animG01"
+						attributeName="transform"
+						attributeType="XML"
+						type="rotate"
+						from="0 180 320"
+						to="90 180 320"
+						begin="0s;animG01.end+3.5s"
+						dur="0.5s"
+						fill="freeze"
+					/>
+					<animateTransform
+						id="animG02"
+						attributeName="transform"
+						attributeType="XML"
+						type="rotate"
+						from="90 180 320"
+						to="180 180 320"
+						begin="2s;animG02.end+3.5s"
+						dur="0.5s"
+						fill="freeze"
+					/>
+				</rect>
+			</mask>
 			<use
 				xlink:href="#txtInzuki"
-				stroke-width="8"
+				stroke-width="5"
 				class="txt01"
 				fill="#eceff1"
 				stroke="#eceff1"
@@ -212,6 +238,7 @@
 				class="txt01"
 				fill="#0077b5"
 				stroke="#0077b5"
+				mask="url(#txtMask)"
 			/>
 		</svg>
 	</div>
