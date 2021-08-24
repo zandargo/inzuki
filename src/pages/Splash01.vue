@@ -353,5 +353,6 @@ export default {
 .txt01 {
 	font-family: RobotoCondensed;
 	font-size: 64px;
+	// mix-blend-mode: darken;
 }
 </style>
