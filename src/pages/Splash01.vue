@@ -313,25 +313,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// #svg-splash {
-// circle {
-// 	stroke: $primary;
-// 	fill: none;
-// 	stroke-dasharray: 640, 160;
-// 	stroke-dashoffset: 41;
-// 	stroke-width: 49%;
-// animation: chomp 1s linear infinite alternate;
-// animation: turn01 2s linear infinite;
-// }
-// }
-// @keyframes turn01 {
-// 	from {
-// 		stroke-dasharray: 640, 160;
-// 		stroke-dashoffset: 41;
-// 	}
-// 	to {
-// 		stroke-dasharray: 160, 640;
-// 		stroke-dashoffset: -15;
-// 	}
-// }
+#svg-splash {
+	background-color: #eceff1;
+}
 </style>
