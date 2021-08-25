@@ -238,9 +238,14 @@ export default {
 					stroke: "",
 					strokewidth: "",
 					fill: "",
+					center: {
+						x: 0,
+						y: 0,
+					},
 					anim: {
-						duration: "2s",
 						begin: "0s",
+						duration: "2s",
+						offset: "2s",
 					},
 				},
 				circle02: {
@@ -252,9 +257,14 @@ export default {
 					stroke: "",
 					strokewidth: "",
 					fill: "",
+					center: {
+						x: 0,
+						y: 0,
+					},
 					anim: {
-						duration: "4s",
 						begin: "0s",
+						duration: "4s",
+						offset: "4s",
 					},
 				},
 				circle03: {
@@ -266,14 +276,20 @@ export default {
 					stroke: "",
 					strokewidth: "",
 					fill: "",
+					center: {
+						x: 0,
+						y: 0,
+					},
 					anim: {
-						duration: "6s",
 						begin: "0s",
+						duration: "6s",
+						offset: "6s",
 					},
 				},
 			},
 			txtviewbox: "",
 			color1: "#0077b5",
+			color2: "#37474F",
 		};
 	},
 	created() {
@@ -292,54 +308,100 @@ export default {
 			this.txtviewbox =
 				"0 0 " + window.innerWidth + " " + window.innerHeight;
 
+			// let base = Math.max(window.innerWidth, window.innerHeight);
+			// let pi = Math.PI;
+			// let radius = 0;
+			// let ang = 0;
+			// let len = 0;
+			// let gap = 0;
+
+			// this.shapes.circle01.stroke = this.color1;
+			// this.shapes.circle03.stroke = this.color1;
+			// this.shapes.circle02.stroke = this.color1;
+			//* Bigger circle
+			setCircle(
+				this.shapes.circle01, //> object
+				0.5, //> radius prop
+				"full", //> thickness
+				this.color1, //> color
+				0, //> begin
+				2, //> duration
+				2 //> offset
+			);
+			// radius = Math.round(base * 0.5);
+			// ang = pi / 4;
+			// len = Math.round(2 * radius * pi);
+			// gap = Math.round(2 * radius * ang);
+			// this.shapes.circle01.radius = radius + "px";
+			// this.shapes.circle01.dasharray0 = "0 " + len;
+			// this.shapes.circle01.dasharray1 = len + " 0";
+			// this.shapes.circle01.dashoffset0 = gap;
+			// this.shapes.circle01.dashoffset1 = gap - len;
+			// this.shapes.circle01.strokewidth = 2 * radius + "px";
+			// this.shapes.circle01.fill = "none";
+			//* Clock circle 1
+			setCircle(
+				this.shapes.circle02, //> object
+				0.16, //> radius prop
+				16, //> thickness
+				this.color2, //> color
+				0, //> begin
+				2, //> duration
+				2 //> offset
+			);
+			// radius = Math.round(base * 0.16);
+			// ang = pi / 4;
+			// len = Math.round(2 * radius * pi);
+			// // gap = Math.round(2 * radius * ang);
+			// gap = 0;
+			// this.shapes.circle02.radius = radius + "px";
+			// this.shapes.circle02.dasharray0 = "0 " + len;
+			// this.shapes.circle02.dasharray1 = len + " 0";
+			// this.shapes.circle02.dashoffset0 = gap;
+			// this.shapes.circle02.dashoffset1 = gap - len;
+			// this.shapes.circle02.strokewidth = "16px";
+			// this.shapes.circle02.fill = "none";
+			//* Clock circle 2
+			setCircle(
+				this.shapes.circle03, //> object
+				0.2, //> radius prop
+				12, //> thickness
+				this.color2, //> color
+				0, //> begin
+				2, //> duration
+				2 //> offset
+			);
+			// radius = Math.round(base * 0.2);
+			// ang = pi / 4;
+			// len = Math.round(2 * radius * pi);
+			// // gap = Math.round(2 * radius * ang) + 1;
+			// gap = 0;
+			// this.shapes.circle03.radius = radius + "px";
+			// this.shapes.circle03.dasharray0 = "0 " + len;
+			// this.shapes.circle03.dasharray1 = len + " 0";
+			// this.shapes.circle03.dashoffset0 = gap;
+			// this.shapes.circle03.dashoffset1 = gap - len;
+			// this.shapes.circle03.strokewidth = "12px";
+			// this.shapes.circle03.fill = "none";
+		},
+		setCircle(obj, radP, thick, color, begin, duration, offset) {
+			obj.stroke = color;
+			obj.fill = "none";
+
 			let base = Math.max(window.innerWidth, window.innerHeight);
 			let pi = Math.PI;
-			let radius = 0;
-			let ang = 0;
+			let ang = pi / 4;
 			let len = 0;
 			let gap = 0;
-
-			this.shapes.circle01.stroke = this.color1;
-			this.shapes.circle03.stroke = this.color1;
-			this.shapes.circle02.stroke = this.color1;
-			//* Bigger circle
-			radius = Math.round(base * 0.5);
-			ang = pi / 4;
-			len = Math.round(2 * radius * pi);
-			gap = Math.round(2 * radius * ang);
-			this.shapes.circle01.radius = radius + "px";
-			this.shapes.circle01.dasharray0 = "0 " + len;
-			this.shapes.circle01.dasharray1 = len + " 0";
-			this.shapes.circle01.dashoffset0 = gap;
-			this.shapes.circle01.dashoffset1 = gap - len;
-			this.shapes.circle01.strokewidth = 2 * radius + "px";
-			this.shapes.circle01.fill = "none";
-			//* Clock circle 1
-			radius = Math.round(base * 0.16);
-			ang = pi / 4;
-			len = Math.round(2 * radius * pi);
-			// gap = Math.round(2 * radius * ang);
-			gap = 0;
-			this.shapes.circle02.radius = radius + "px";
-			this.shapes.circle02.dasharray0 = "0 " + len;
-			this.shapes.circle02.dasharray1 = len + " 0";
-			this.shapes.circle02.dashoffset0 = gap;
-			this.shapes.circle02.dashoffset1 = gap - len;
-			this.shapes.circle02.strokewidth = "16px";
-			this.shapes.circle02.fill = "none";
-			//* Clock circle 2
-			radius = Math.round(base * 0.2);
-			ang = pi / 4;
-			len = Math.round(2 * radius * pi);
+			let radius = Math.round(base * 0.2);
+			obj.radius = radius + "px";
+			len = Math.round(2 * pi * radius);
 			// gap = Math.round(2 * radius * ang) + 1;
-			gap = 0;
-			this.shapes.circle03.radius = radius + "px";
-			this.shapes.circle03.dasharray0 = "0 " + len;
-			this.shapes.circle03.dasharray1 = len + " 0";
-			this.shapes.circle03.dashoffset0 = gap;
-			this.shapes.circle03.dashoffset1 = gap - len;
-			this.shapes.circle03.strokewidth = "12px";
-			this.shapes.circle03.fill = "none";
+			obj.strokewidth = thick === "full" ? 2 * radius + "px" : thick + "px";
+			obj.dasharray0 = "0 " + len;
+			obj.dasharray1 = len + " 0";
+			obj.dashoffset0 = gap;
+			obj.dashoffset1 = gap - len;
 		},
 	},
 };

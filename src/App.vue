@@ -16,4 +16,8 @@ export default defineComponent({
 	//_ src: url('./assets/fonts/RobotoCondensed-Regular.ttf') format('truetype');
 	src: url("../public/fonts/RobotoCondensed-Regular.ttf") format("truetype");
 }
+* {
+	font-family: "RobotoCondensed";
+	letter-spacing: 0.08em;
+}
 </style>

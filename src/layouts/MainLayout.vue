@@ -17,7 +17,7 @@
 					@click="toggleLeftDrawer"
 				/>
 
-				<q-toolbar-title class="text-center text-bold q-mt-sm">
+				<q-toolbar-title class="text-center text-bold q-mt-none">
 					INZUKI
 				</q-toolbar-title>
 
@@ -72,14 +72,14 @@ import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
 	{
-		title: "PERFIL DO USUÁRIO",
-		caption: "Informações do usuário",
+		title: "HEADINGS",
+		caption: "Template dos formatos de letra",
 		icon: "face",
 		route: "page1",
 	},
 	{
-		title: "CONFIGURAÇÕES",
-		caption: "Funcionamento do app",
+		title: "BUTTONS/SHAPES",
+		caption: "Templates de botões e formas",
 		icon: "settings",
 		route: "page2",
 	},
