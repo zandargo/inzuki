@@ -22,13 +22,11 @@ function createWindow() {
 		width: 360,
 		height: 640,
 		frame: false,
-		icon: `${__dirname}/icons/icon.ico`,
-
+		// icon: `${__dirname}/icons/icon.ico`,
 		useContentSize: true,
 
 		webPreferences: {
 			contextIsolation: true,
-
 			// More info: /quasar-cli/developing-electron-apps/electron-preload-script
 			preload: path.resolve(__dirname, process.env.QUASAR_ELECTRON_PRELOAD),
 		},
