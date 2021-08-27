@@ -216,27 +216,29 @@
 				/>
 			</line>
 			//* LINE 2 - CLOCK ARM - MINUTES
-			<!-- <line
-				x1="50%"
-				y1="50%"
-				x2="50%"
-				y2="40%"
-				stroke="#263238"
+			<line
+				:x1="win.cx"
+				:y1="win.cy"
+				:x2="win.cx"
+				:y2="
+					Math.round(
+						win.cy - (Math.min(win.width, win.height) / 2) * 0.4
+					) + 'px'
+				"
+				:stroke="color2"
 				stroke-width="16px"
 				stroke-linecap="round"
-				transform="rotate(-120 180 320)
-                "
 			>
 				<animateTransform
 					attributeName="transform"
 					attributeType="XML"
 					type="rotate"
-					from="-120 180 320"
-					to="240 180 320"
+					:from="'0 ' + win.cx + ' ' + win.cy"
+					:to="'360 ' + win.cx + ' ' + win.cy"
 					dur="5s"
 					repeatCount="indefinite"
 				/>
-			</line> -->
+			</line>
 			//* INZUKI
 			<!-- <text
 				id="txtInzuki"
