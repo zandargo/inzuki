@@ -1,6 +1,24 @@
 <template>
 	<div class="fullscreen flex flex-center">
 		<svg id="svg-splash" :width="win.width" :height="win.height">
+			//* DEFINITIONS
+			<filter id="dropshadow">
+				<feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+				<feOffset dx="2" dy="2" />
+				<feComponentTransfer>
+					<feFuncA type="linear" slope="0.2" />
+				</feComponentTransfer>
+				<feMerge>
+					<feMergeNode />
+					<feMergeNode in="SourceGraphic" />
+				</feMerge>
+			</filter>
+
+			<filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+				<feOffset result="offOut" in="SourceGraphic" dx="0" dy="0" />
+				<feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
+				<feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+			</filter>
 			//* CIRCLE 01 - OUTER CIRCLE
 			<circle
 				id="circ01"
@@ -9,9 +27,10 @@
 				:r="shapes.circle01.radius"
 				:stroke-dasharray="shapes.circle01.dasharray0"
 				:stroke-dashoffset="shapes.circle01.dashoffset0"
-				stroke="#0077b5"
+				:stroke="color1"
 				:stroke-width="shapes.circle01.strokewidth"
-				fill="none"
+				:fill="shapes.circle01.fill"
+				:transform="'rotate(-90 ' + win.cx + ' ' + win.cy + ')'"
 			>
 				<animate
 					id="circ01_anim1"
@@ -19,7 +38,11 @@
 					:from="shapes.circle01.dasharray0"
 					:to="shapes.circle01.dasharray1"
 					:dur="shapes.circle01.anim.duration"
-					begin="0s;circ01_anim1.end+2s"
+					:begin="
+						shapes.circle01.anim.begin +
+						';circ01_anim1.end+' +
+						shapes.circle01.anim.offset
+					"
 				/>
 				<animate
 					id="circ01_anim2"
@@ -27,7 +50,11 @@
 					:from="shapes.circle01.dasharray1"
 					:to="shapes.circle01.dasharray0"
 					:dur="shapes.circle01.anim.duration"
-					begin="2s;circ01_anim2.end+2s"
+					:begin="
+						shapes.circle01.anim.offset +
+						';circ01_anim2.end+' +
+						shapes.circle01.anim.offset
+					"
 				/>
 				<animate
 					id="circ01_anim3"
@@ -35,26 +62,26 @@
 					:from="shapes.circle01.dashoffset0"
 					:to="shapes.circle01.dashoffset1"
 					:dur="shapes.circle01.anim.duration"
-					begin="2s;circ01_anim3.end+2s"
+					:begin="
+						shapes.circle01.anim.offset +
+						';circ01_anim3.end+' +
+						shapes.circle01.anim.offset
+					"
 				/>
 			</circle>
 			//* CIRCLE 02 - CLOCK CIRCLE 01
-			<!-- <use
-				xlink:href="#circ02"
-				stroke="#333333"
-				transform="translate(20 20)"
-			/> -->
 			<circle
 				id="circ02"
 				cx="50%"
 				cy="50%"
-				stroke="#263238"
-				stroke-linecap="round"
 				:r="shapes.circle02.radius"
 				:stroke-dasharray="shapes.circle02.dasharray0"
 				:stroke-dashoffset="shapes.circle02.dashoffset0"
+				:stroke="color2"
 				:stroke-width="shapes.circle02.strokewidth"
-				fill="none"
+				stroke-linecap="round"
+				:fill="shapes.circle02.fill"
+				:transform="'rotate(-45 ' + win.cx + ' ' + win.cy + ')'"
 			>
 				<animate
 					id="circ02_anim1"
@@ -62,7 +89,11 @@
 					:from="shapes.circle02.dasharray0"
 					:to="shapes.circle02.dasharray1"
 					:dur="shapes.circle02.anim.duration"
-					begin="0s;circ02_anim1.end+4s"
+					:begin="
+						shapes.circle02.anim.begin +
+						';circ02_anim1.end+' +
+						shapes.circle02.anim.offset
+					"
 				/>
 				<animate
 					id="circ02_anim2"
@@ -70,7 +101,11 @@
 					:from="shapes.circle02.dasharray1"
 					:to="shapes.circle02.dasharray0"
 					:dur="shapes.circle02.anim.duration"
-					begin="4s;circ02_anim2.end+4s"
+					:begin="
+						shapes.circle02.anim.offset +
+						';circ02_anim2.end+' +
+						shapes.circle02.anim.offset
+					"
 				/>
 				<animate
 					id="circ02_anim3"
@@ -78,15 +113,19 @@
 					:from="shapes.circle02.dashoffset0"
 					:to="shapes.circle02.dashoffset1"
 					:dur="shapes.circle02.anim.duration"
-					begin="4s;circ02_anim3.end+4s"
+					:begin="
+						shapes.circle02.anim.offset +
+						';circ02_anim3.end+' +
+						shapes.circle02.anim.offset
+					"
 				/>
 				<animateTransform
 					attributeName="transform"
 					attributeType="XML"
 					type="rotate"
-					from="-180 180 320"
-					to="180 180 320"
-					dur="4s"
+					:from="'-180 ' + win.cx + ' ' + win.cy"
+					:to="'180 ' + win.cx + ' ' + win.cy"
+					:dur="shapes.circle02.anim.duration"
 					repeatCount="indefinite"
 				/>
 			</circle>
@@ -96,13 +135,14 @@
 				id="circ03"
 				cx="50%"
 				cy="50%"
-				stroke="#263238"
-				stroke-linecap="round"
 				:r="shapes.circle03.radius"
 				:stroke-dasharray="shapes.circle03.dasharray0"
 				:stroke-dashoffset="shapes.circle03.dashoffset0"
+				:stroke="color2"
 				:stroke-width="shapes.circle03.strokewidth"
-				fill="none"
+				stroke-linecap="round"
+				:fill="shapes.circle03.fill"
+				:transform="'rotate(-60 ' + win.cx + ' ' + win.cy + ')'"
 			>
 				<animate
 					id="circ03_anim1"
@@ -110,7 +150,11 @@
 					:from="shapes.circle03.dasharray0"
 					:to="shapes.circle03.dasharray1"
 					:dur="shapes.circle03.anim.duration"
-					begin="0s;circ03_anim1.end+6s"
+					:begin="
+						shapes.circle03.anim.begin +
+						';circ03_anim1.end+' +
+						shapes.circle03.anim.offset
+					"
 				/>
 				<animate
 					id="circ03_anim2"
@@ -118,7 +162,11 @@
 					:from="shapes.circle03.dasharray1"
 					:to="shapes.circle03.dasharray0"
 					:dur="shapes.circle03.anim.duration"
-					begin="6s;circ03_anim2.end+6s"
+					:begin="
+						shapes.circle03.anim.offset +
+						';circ03_anim2.end+' +
+						shapes.circle03.anim.offset
+					"
 				/>
 				<animate
 					id="circ03_anim3"
@@ -126,25 +174,34 @@
 					:from="shapes.circle03.dashoffset0"
 					:to="shapes.circle03.dashoffset1"
 					:dur="shapes.circle03.anim.duration"
-					begin="6s;circ03_anim3.end+6s"
+					:begin="
+						shapes.circle03.anim.offset +
+						';circ03_anim3.end+' +
+						shapes.circle03.anim.offset
+					"
 				/>
 				<animateTransform
 					attributeName="transform"
+					attributeType="XML"
 					type="rotate"
-					from="0 180 320"
-					to="360 180 320"
-					begin="0s"
-					dur="6s"
+					:from="'0 ' + win.cx + ' ' + win.cy"
+					:to="'360 ' + win.cx + ' ' + win.cy"
+					:dur="shapes.circle02.anim.duration"
 					repeatCount="indefinite"
 				/>
 			</circle>
+
 			//* LINE 01 - CLOCK ARM - HOURS
 			<line
-				x1="50%"
-				y1="50%"
-				x2="50%"
-				y2="45%"
-				stroke="#263238"
+				:x1="win.cx"
+				:y1="win.cy"
+				:x2="win.cx"
+				:y2="
+					Math.round(
+						win.cy - (Math.min(win.width, win.height) / 2) * 0.25
+					) + 'px'
+				"
+				:stroke="color2"
 				stroke-width="16px"
 				stroke-linecap="round"
 			>
@@ -152,14 +209,14 @@
 					attributeName="transform"
 					attributeType="XML"
 					type="rotate"
-					from="0 180 320"
-					to="360 180 320"
+					:from="'0 ' + win.cx + ' ' + win.cy"
+					:to="'360 ' + win.cx + ' ' + win.cy"
 					dur="60s"
 					repeatCount="indefinite"
 				/>
 			</line>
 			//* LINE 2 - CLOCK ARM - MINUTES
-			<line
+			<!-- <line
 				x1="50%"
 				y1="50%"
 				x2="50%"
@@ -179,9 +236,9 @@
 					dur="5s"
 					repeatCount="indefinite"
 				/>
-			</line>
+			</line> -->
 			//* INZUKI
-			<text
+			<!-- <text
 				id="txtInzuki"
 				x="50%"
 				y="50%"
@@ -212,7 +269,7 @@
 				class="txt01"
 				fill="#0077b5"
 				stroke="#0077b5"
-			/>
+			/> -->
 		</svg>
 	</div>
 </template>
@@ -230,26 +287,26 @@ export default {
 			},
 			shapes: {
 				circle01: {
-					radius: 0,
+					radius: "1px",
 					dasharray0: "",
 					dasharray1: "",
 					dashoffset0: "",
 					dashoffset1: "",
 					stroke: "",
 					strokewidth: "",
-					fill: "",
+					fill: 0,
 					center: {
 						x: 0,
 						y: 0,
 					},
 					anim: {
-						begin: "0s",
-						duration: "2s",
-						offset: "2s",
+						begin: "1s",
+						duration: "1s",
+						offset: "1s",
 					},
 				},
 				circle02: {
-					radius: 0,
+					radius: "1px",
 					dasharray0: "",
 					dasharray1: "",
 					dashoffset0: "",
@@ -268,7 +325,7 @@ export default {
 					},
 				},
 				circle03: {
-					radius: 0,
+					radius: "1px",
 					dasharray0: "",
 					dasharray1: "",
 					dashoffset0: "",
@@ -292,6 +349,9 @@ export default {
 			color2: "#37474F",
 		};
 	},
+	setup() {
+		return {};
+	},
 	created() {
 		window.addEventListener("resize", this.handleResize);
 		this.handleResize();
@@ -301,103 +361,52 @@ export default {
 	},
 	methods: {
 		handleResize() {
+			this.setMainVals();
+			//* Bigger circle
+			//> obj, radP, thick, color, begin, duration, offset
+			this.setCircle(
+				this.shapes.circle01,
+				0.5,
+				"full",
+				this.color1,
+				0,
+				2,
+				2
+			);
+			//* Clock circle 1
+			this.setCircle(this.shapes.circle02, 0.35, 16, this.color2, 0, 4, 4);
+			//* Clock circle 2
+			this.setCircle(this.shapes.circle03, 0.25, 12, this.color2, 0, 5, 5);
+		},
+		setMainVals() {
 			this.win.width = window.innerWidth;
 			this.win.height = window.innerHeight;
 			this.win.cx = window.innerWidth / 2;
 			this.win.cy = window.innerHeight / 2;
 			this.txtviewbox =
 				"0 0 " + window.innerWidth + " " + window.innerHeight;
-
-			// let base = Math.max(window.innerWidth, window.innerHeight);
-			// let pi = Math.PI;
-			// let radius = 0;
-			// let ang = 0;
-			// let len = 0;
-			// let gap = 0;
-
-			// this.shapes.circle01.stroke = this.color1;
-			// this.shapes.circle03.stroke = this.color1;
-			// this.shapes.circle02.stroke = this.color1;
-			//* Bigger circle
-			setCircle(
-				this.shapes.circle01, //> object
-				0.5, //> radius prop
-				"full", //> thickness
-				this.color1, //> color
-				0, //> begin
-				2, //> duration
-				2 //> offset
-			);
-			// radius = Math.round(base * 0.5);
-			// ang = pi / 4;
-			// len = Math.round(2 * radius * pi);
-			// gap = Math.round(2 * radius * ang);
-			// this.shapes.circle01.radius = radius + "px";
-			// this.shapes.circle01.dasharray0 = "0 " + len;
-			// this.shapes.circle01.dasharray1 = len + " 0";
-			// this.shapes.circle01.dashoffset0 = gap;
-			// this.shapes.circle01.dashoffset1 = gap - len;
-			// this.shapes.circle01.strokewidth = 2 * radius + "px";
-			// this.shapes.circle01.fill = "none";
-			//* Clock circle 1
-			setCircle(
-				this.shapes.circle02, //> object
-				0.16, //> radius prop
-				16, //> thickness
-				this.color2, //> color
-				0, //> begin
-				2, //> duration
-				2 //> offset
-			);
-			// radius = Math.round(base * 0.16);
-			// ang = pi / 4;
-			// len = Math.round(2 * radius * pi);
-			// // gap = Math.round(2 * radius * ang);
-			// gap = 0;
-			// this.shapes.circle02.radius = radius + "px";
-			// this.shapes.circle02.dasharray0 = "0 " + len;
-			// this.shapes.circle02.dasharray1 = len + " 0";
-			// this.shapes.circle02.dashoffset0 = gap;
-			// this.shapes.circle02.dashoffset1 = gap - len;
-			// this.shapes.circle02.strokewidth = "16px";
-			// this.shapes.circle02.fill = "none";
-			//* Clock circle 2
-			setCircle(
-				this.shapes.circle03, //> object
-				0.2, //> radius prop
-				12, //> thickness
-				this.color2, //> color
-				0, //> begin
-				2, //> duration
-				2 //> offset
-			);
-			// radius = Math.round(base * 0.2);
-			// ang = pi / 4;
-			// len = Math.round(2 * radius * pi);
-			// // gap = Math.round(2 * radius * ang) + 1;
-			// gap = 0;
-			// this.shapes.circle03.radius = radius + "px";
-			// this.shapes.circle03.dasharray0 = "0 " + len;
-			// this.shapes.circle03.dasharray1 = len + " 0";
-			// this.shapes.circle03.dashoffset0 = gap;
-			// this.shapes.circle03.dashoffset1 = gap - len;
-			// this.shapes.circle03.strokewidth = "12px";
-			// this.shapes.circle03.fill = "none";
 		},
 		setCircle(obj, radP, thick, color, begin, duration, offset) {
-			obj.stroke = color;
 			obj.fill = "none";
-
-			let base = Math.max(window.innerWidth, window.innerHeight);
+			obj.center.x = window.innerWidth / 2;
+			obj.center.y = window.innerHeight / 2;
+			let base =
+				thick === "full"
+					? Math.max(window.innerWidth, window.innerHeight)
+					: Math.min(window.innerWidth, window.innerHeight);
 			let pi = Math.PI;
 			let ang = pi / 4;
-			let len = 0;
+			let radius = Math.round(base * radP);
+			obj.radius = "" + radius + "px";
+			let len = Math.round(2 * pi * radius);
 			let gap = 0;
-			let radius = Math.round(base * 0.2);
-			obj.radius = radius + "px";
-			len = Math.round(2 * pi * radius);
-			// gap = Math.round(2 * radius * ang) + 1;
+			// // gap = Math.round(2 * radius * ang) + 1;
 			obj.strokewidth = thick === "full" ? 2 * radius + "px" : thick + "px";
+			obj.stroke = color;
+
+			obj.anim.begin = begin + "s";
+			obj.anim.duration = duration + "s";
+			obj.anim.offset = offset + "s";
 			obj.dasharray0 = "0 " + len;
 			obj.dasharray1 = len + " 0";
 			obj.dashoffset0 = gap;
