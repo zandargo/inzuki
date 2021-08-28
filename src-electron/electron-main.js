@@ -15,16 +15,13 @@ try {
 let mainWindow;
 
 function createWindow() {
-	/**
-	 * Initial window options
-	 */
+	//* Initial window options
 	mainWindow = new BrowserWindow({
 		width: 360,
 		height: 640,
 		frame: false,
 		// icon: `${__dirname}/icons/icon.ico`,
 		useContentSize: true,
-
 		webPreferences: {
 			contextIsolation: true,
 			// More info: /quasar-cli/developing-electron-apps/electron-preload-script

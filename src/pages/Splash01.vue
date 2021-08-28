@@ -1,5 +1,5 @@
 <template>
-	<div class="fullscreen flex flex-center">
+	<div class="fullscreen flex flex-center q-elecron-drag">
 		<svg id="svg-splash" :width="win.width" :height="win.height">
 			//* DEFINITIONS
 			<filter id="dropshadow">
@@ -19,6 +19,26 @@
 				<feGaussianBlur result="blurOut" in="offOut" stdDeviation="10" />
 				<feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
 			</filter>
+
+			<filter
+				id="shadowline"
+				x="-50%"
+				y="-50%"
+				height="200%"
+				width="200%"
+				filterUnits="userSpaceOnUse"
+			>
+				<feGaussianBlur in="SourceAlpha" stdDeviation="2" />
+				<feOffset dx="2" dy="2" result="offsetblur" />
+				<feComponentTransfer>
+					<feFuncA type="linear" slope="0.25" />
+				</feComponentTransfer>
+
+				<feMerge>
+					<feMergeNode in="coloredBlur" />
+					<feMergeNode in="SourceGraphic" />
+				</feMerge>
+			</filter>
 			//* CIRCLE 01 - OUTER CIRCLE
 			<circle
 				id="circ01"
@@ -31,6 +51,7 @@
 				:stroke-width="shapes.circle01.strokewidth"
 				:fill="shapes.circle01.fill"
 				:transform="'rotate(-90 ' + win.cx + ' ' + win.cy + ')'"
+				filter="url(#dropshadow)"
 			>
 				<animate
 					id="circ01_anim1"
@@ -82,6 +103,7 @@
 				stroke-linecap="round"
 				:fill="shapes.circle02.fill"
 				:transform="'rotate(-45 ' + win.cx + ' ' + win.cy + ')'"
+				filter="url(#dropshadow)"
 			>
 				<animate
 					id="circ02_anim1"
@@ -143,6 +165,7 @@
 				stroke-linecap="round"
 				:fill="shapes.circle03.fill"
 				:transform="'rotate(-60 ' + win.cx + ' ' + win.cy + ')'"
+				filter="url(#dropshadow)"
 			>
 				<animate
 					id="circ03_anim1"
@@ -204,6 +227,7 @@
 				:stroke="color2"
 				stroke-width="16px"
 				stroke-linecap="round"
+				filter="url(#shadowline)"
 			>
 				<animateTransform
 					attributeName="transform"
@@ -228,6 +252,7 @@
 				:stroke="color2"
 				stroke-width="16px"
 				stroke-linecap="round"
+				filter="url(#shadowline)"
 			>
 				<animateTransform
 					attributeName="transform"
@@ -240,38 +265,47 @@
 				/>
 			</line>
 			//* INZUKI
-			<!-- <text
+			<text
 				id="txtInzuki"
-				x="50%"
-				y="50%"
+				:x="win.cx"
+				:y="win.cy"
 				stroke-linecap="round"
 				stroke-linejoin="round"
 				dominant-baseline="auto"
 				text-anchor="end"
-				textLength="200px"
+				textLength="160px"
 				lengthAdjust="spacing"
 				class="txt01"
-				transform="rotate(-90 180 320)
-                translate(310 180)
-                scale(1 0.95)"
+				:transform="
+					'rotate(-90 ' +
+					win.cx +
+					' ' +
+					win.cy +
+					') translate(' +
+					Math.round(win.cy - 10) +
+					' ' +
+					Math.round(win.cx - 5) +
+					') scale(1 0.95)'
+				"
+				filter="url(#dropshadow)"
 			>
 				INZUKI
 			</text>
 
 			<use
 				xlink:href="#txtInzuki"
-				stroke-width="8"
+				stroke-width="5"
 				class="txt01"
 				fill="#eceff1"
 				stroke="#eceff1"
 			/>
 			<use
 				xlink:href="#txtInzuki"
-				stroke-width="4"
+				stroke-width="2"
 				class="txt01"
 				fill="#0077b5"
 				stroke="#0077b5"
-			/> -->
+			/>
 		</svg>
 	</div>
 </template>
@@ -349,6 +383,7 @@ export default {
 			txtviewbox: "",
 			color1: "#0077b5",
 			color2: "#37474F",
+			color3: "#eceff1",
 		};
 	},
 	setup() {
@@ -403,7 +438,8 @@ export default {
 			let len = Math.round(2 * pi * radius);
 			let gap = 0;
 			// // gap = Math.round(2 * radius * ang) + 1;
-			obj.strokewidth = thick === "full" ? 2 * radius + "px" : thick + "px";
+			obj.strokewidth =
+				thick === "full" ? 1.95 * radius + "px" : thick + "px";
 			obj.stroke = color;
 
 			obj.anim.begin = begin + "s";
@@ -425,7 +461,7 @@ export default {
 }
 .txt01 {
 	font-family: RobotoCondensed;
-	font-size: 64px;
+	font-size: 48px;
 	// mix-blend-mode: darken;
 }
 </style>
