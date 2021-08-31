@@ -1,11 +1,11 @@
 <template>
 	<div>
 		<q-page>
-			<div class="column justify-start items-center q-pa-md q-gutter-sm">
+			<div class="column justify-start items-center q-pa-md">
 				<div class="col full-width">
 					<q-card class="title-card" bordered elevated>
 						<q-card-section class="q-py-xs bg-grey-2">
-							<div class="text-h3 q-ma-none">Lorem ipsum</div>
+							<div class="text-h5 q-ma-none">Informações Salariais</div>
 						</q-card-section>
 						<q-separator inset class="text-h3" />
 						<q-card-section>
