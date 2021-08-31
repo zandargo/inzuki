@@ -62,7 +62,9 @@
 		</q-footer>
 
 		<q-page-container>
-			<router-view />
+			<keep-alive>
+				<router-view />
+			</keep-alive>
 		</q-page-container>
 	</q-layout>
 </template>
@@ -94,6 +96,12 @@ const linksList = [
 		caption: "Splash Screen",
 		icon: "visibility",
 		route: "SplashScreen",
+	},
+	{
+		title: "Finança",
+		caption: "Definições Financeiras",
+		icon: "attach_money",
+		route: "Finance1",
 	},
 ];
 

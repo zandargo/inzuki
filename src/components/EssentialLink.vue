@@ -5,7 +5,7 @@
 		</q-item-section>
 
 		<q-item-section>
-			<q-item-label>{{ title }}</q-item-label>
+			<q-item-label class="z-caps">{{ title }}</q-item-label>
 			<q-item-label caption>
 				{{ caption }}
 			</q-item-label>
@@ -41,3 +41,10 @@ export default defineComponent({
 	},
 });
 </script>
+
+<style lang="scss" scoped>
+.z-caps {
+	// font-variant-caps: small-caps;
+	text-transform: uppercase;
+}
+</style>
