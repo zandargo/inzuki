@@ -61,11 +61,11 @@
 			<q-toolbar> </q-toolbar>
 		</q-footer>
 
-		<q-page-container>
-			<keep-alive>
+		<keep-alive>
+			<q-page-container>
 				<router-view />
-			</keep-alive>
-		</q-page-container>
+			</q-page-container>
+		</keep-alive>
 	</q-layout>
 </template>
 

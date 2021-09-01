@@ -10,25 +10,17 @@
 						<q-separator inset class="text-h3" />
 						<q-card-section>
 							<q-input
-								v-model="ph"
-								label="Base"
-								placeholder="Salário base"
-								hint="Dica"
+								v-model="baseIncome"
+								label="Salário Bruto"
+								prefix="R$ "
+								mask="#,##"
+								fill-mask="0"
+								reverse-fill-mask
+								input-class="text-right text-h5"
 							/>
-							<q-input v-model="text" label="Label" />
 						</q-card-section>
 					</q-card>
-					<q-input v-model="text" label="Label" />
 				</div>
-				<!-- <div class="col">
-					<q-btn rounded color="primary" label="Clique aqui" />
-				</div>
-				<div class="col">
-					<q-btn-group rounded dense>
-						<q-btn rounded dense color="primary" icon="add" />
-						<q-btn rounded dense color="primary" icon="remove" />
-					</q-btn-group>
-				</div> -->
 			</div>
 		</q-page>
 	</div>
@@ -41,9 +33,7 @@ export default {
 	name: "findefs1",
 	setup() {
 		return {
-			text: ref(""),
-			ph: ref(""),
-			dense: ref(false),
+			baseIncome: ref(""),
 		};
 	},
 };

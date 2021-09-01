@@ -1,4 +1,1 @@
-/*
-export function someMutation (state) {
-}
-*/
+export function SetBaseIncome(state, payload) {}
