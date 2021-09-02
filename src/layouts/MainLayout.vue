@@ -28,7 +28,7 @@
 					size="22px"
 					icon="home"
 					aria-label="Home"
-					:to="{ name: 'index' }"
+					:to="{ name: 'home' }"
 				/>
 			</q-toolbar>
 		</q-header>

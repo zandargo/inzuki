@@ -34,7 +34,7 @@
 				outlined
 				class="q-mb-md"
 				type="password"
-				label="Password"
+				label="Senha"
 				v-model="formData.password"
 			/>
 			<div class="row">
@@ -45,8 +45,8 @@
 		<div class="text-center q-my-md">
 			<q-btn
 				flat
-				label="Forgot Password?"
-				color="green"
+				label="Esqueceu a senha?"
+				color="secondary"
 				class="text-capitalize rounded-borders"
 				v-if="tab !== 'register'"
 				@click="forgotPassword"
