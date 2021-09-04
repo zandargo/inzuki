@@ -5,27 +5,42 @@ const routes = [
 		children: [
 			{
 				name: "index",
-				path: "",
+				path: "/",
+				component: () => import("pages/Auth.vue"),
+			},
+			{
+				name: "home",
+				path: "/home",
 				component: () => import("pages/Index.vue"),
+			},
+			// {
+			// 	name: "home",
+			// 	path: "/home",
+			// 	component: () => import("pages/Home.vue"),
+			// },
+			{
+				name: "Finance1",
+				path: "/finance1",
+				component: () => import("pages/Finance101.vue"),
 			},
 			{
 				name: "page1",
-				path: "page1",
+				path: "/page1",
 				component: () => import("pages/Page1.vue"),
 			},
 			{
 				name: "page2",
-				path: "page2",
+				path: "/page2",
 				component: () => import("pages/Page2.vue"),
 			},
 			{
 				name: "page3",
-				path: "page3",
+				path: "/page3",
 				component: () => import("pages/Page3.vue"),
 			},
 			{
 				name: "splscr",
-				path: "splscr",
+				path: "/splscr",
 				component: () => import("pages/Splash01.vue"),
 			},
 		],

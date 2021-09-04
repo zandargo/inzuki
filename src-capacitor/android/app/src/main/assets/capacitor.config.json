@@ -1,10 +1,10 @@
 {
-  "appId": "com.makema.inzuki.app",
-  "appName": "Inzuki",
-  "bundledWebRuntime": false,
-  "npmClient": "yarn",
-  "webDir": "www",
-  "server": {
-    "url": "http://192.168.0.11:8080"
-  }
+	"appId": "org.madkey.inzuki.app",
+	"appName": "Inzuki",
+	"bundledWebRuntime": false,
+	"npmClient": "yarn",
+	"webDir": "www",
+	"server": {
+		"url": "http://192.168.10.107:8080"
+	}
 }

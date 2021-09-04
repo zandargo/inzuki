@@ -1,5 +1,5 @@
 {
-  "appId": "com.makema.inzuki.app",
+  "appId": "org.madkey.inzuki.app",
   "appName": "Inzuki",
   "bundledWebRuntime": false,
   "npmClient": "yarn",

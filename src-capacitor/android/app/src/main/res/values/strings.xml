@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">Inzuki</string>
     <string name="title_activity_main">Inzuki</string>
-    <string name="package_name">com.makema.inzuki.app</string>
-    <string name="custom_url_scheme">com.makema.inzuki.app</string>
+    <string name="package_name">org.madkey.inzuki.app</string>
+    <string name="custom_url_scheme">org.madkey.inzuki.app</string>
 </resources>
