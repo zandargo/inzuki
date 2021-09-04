@@ -2,7 +2,14 @@
 	<q-layout view="hHh lpR fFf" class="">
 		<q-header
 			elevated
-			class="bg-primary text-white q-electron-drag no-scroll"
+			class="
+				bg-primary
+				text-white
+				q-electron-drag
+				no-scroll
+				shadow-3
+				absolute-top
+			"
 			height-hint="98"
 		>
 			<q-toolbar>
@@ -28,6 +35,7 @@
 					size="22px"
 					icon="home"
 					aria-label="Home"
+					@click="closeLeftDrawer"
 					:to="{ name: 'home' }"
 				/>
 			</q-toolbar>
@@ -51,7 +59,7 @@
 		</q-drawer>
 
 		<q-footer
-			class="flex flex-center q-pa-none bg-black"
+			class="flex flex-center q-pa-none bg-blue-grey-5 absolute-bottom"
 			style="
 				 {
 					heigth: '60px';
@@ -61,18 +69,27 @@
 			<q-toolbar> </q-toolbar>
 		</q-footer>
 
-		<keep-alive>
-			<q-page-container>
+		<q-page-container class="q-pa-lg">
+			<keep-alive>
 				<router-view />
-			</q-page-container>
-		</keep-alive>
+			</keep-alive>
+		</q-page-container>
 	</q-layout>
 </template>
 
 <script>
+import firedb from "src/boot/firebase";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
+
 import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
+	{
+		title: "LOGIN/REGISTER",
+		caption: "Logar no Inzuki database (a ser atualizado)",
+		icon: "vpn_key",
+		route: "auth",
+	},
 	{
 		title: "HEADINGS",
 		caption: "Template dos formatos de letra",
@@ -123,7 +140,26 @@ export default defineComponent({
 			toggleLeftDrawer() {
 				leftDrawerOpen.value = !leftDrawerOpen.value;
 			},
+			closeLeftDrawer() {
+				leftDrawerOpen.value = false;
+			},
 		};
+	},
+	mounted() {
+		const q = query(collection(db, "worklog")); //, where("state", "==", "CA"));
+		const unsubscribe = onSnapshot(q, (snapshot) => {
+			snapshot.docChanges().forEach((change) => {
+				if (change.type === "added") {
+					console.log("New city: ", change.doc.data());
+				}
+				if (change.type === "modified") {
+					console.log("Modified city: ", change.doc.data());
+				}
+				if (change.type === "removed") {
+					console.log("Removed city: ", change.doc.data());
+				}
+			});
+		});
 	},
 });
 </script>

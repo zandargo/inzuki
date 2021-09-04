@@ -1,35 +1,30 @@
-import firebase from "firebase/app";
-import "firebase/auth";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
+// Follow this pattern to import other Firebase services
+// import { } from 'firebase/<service>';
+import {} from "firebase/firestore";
+import {} from "firebase/auth";
 
-//set vars for process.env
+// TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
-    // apiKey: "AIzaSyCYSpgPVmvZYZNrWz2whxMcQ0qulqQ1wx4",
-    // authDomain: "quasar--auth.firebaseapp.com",
-    // projectId: "quasar--auth",
-    // storageBucket: "quasar--auth.appspot.com",
-    // messagingSenderId: "608023091006",
-    // appId: "1:608023091006:web:abb0169ff10f48c8173e6f"
-    apiKey: "AIzaSyCeb0rJRxG3o-TOcFAdr_9o5uffrLQXeis",
-    authDomain: "inzuki-firebase.firebaseapp.com",
-    projectId: "inzuki-firebase",
-    storageBucket: "inzuki-firebase.appspot.com",
-    messagingSenderId: "932304642703",
-    appId: "1:932304642703:web:de1eac489832983adf86fa",
-    measurementId: "G-6FB6R23423"
-  };
+	apiKey: "AIzaSyCeb0rJRxG3o-TOcFAdr_9o5uffrLQXeis",
+	authDomain: "inzuki-firebase.firebaseapp.com",
+	projectId: "inzuki-firebase",
+	storageBucket: "inzuki-firebase.appspot.com",
+	messagingSenderId: "932304642703",
+	appId: "1:932304642703:web:de1eac489832983adf86fa",
+	measurementId: "G-6FB6R23423",
+};
 
-// if firebase isn't already initialize, initialize using the above credentials
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Get a list of cities from your database
+async function getCities(db) {
+	const citiesCol = collection(db, "cities");
+	const citySnapshot = await getDocs(citiesCol);
+	const cityList = citySnapshot.docs.map((doc) => doc.data());
+	return cityList;
 }
 
-firebase.getCurrentUser = () => {
-    return new Promise((resolve, reject) => {
-      const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-        unsubscribe();
-        resolve(user);
-      }, reject);
-    })
-  };
-
-export default firebase
+export default db;

@@ -18,8 +18,9 @@
 
 <script>
 import { defineComponent } from "vue";
-
 import { date } from "quasar";
+import { InzukiDAO } from "../db/inzukiDAO";
+
 const timeStamp = Date.now();
 // const formattedString = date.formatDate(timeStamp, "YYYY-MM-DDTHH:mm:ss.SSSZ");
 const formattedDate = date.formatDate(timeStamp, "dddd, DD / MM / YYYY", {

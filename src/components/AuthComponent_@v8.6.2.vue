@@ -61,9 +61,8 @@
 </template>
 
 <script>
-import firebase from "firebase/compat/app";
+import firebase from "firebase/app";
 import ForgotPassword from "components/ForgotPassword.vue";
-
 export default {
   name: "AuthComponent",
   props: ['tab'],

@@ -6,6 +6,16 @@ const routes = [
 			{
 				name: "index",
 				path: "/",
+				component: () => import("pages/Index.vue"),
+			},
+			// {
+			// 	name: "index",
+			// 	path: "/",
+			// 	component: () => import("pages/Auth.vue"),
+			// },
+			{
+				name: "auth",
+				path: "/auth",
 				component: () => import("pages/Auth.vue"),
 			},
 			{
