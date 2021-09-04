@@ -1,0 +1,7 @@
+{
+  "appId": "com.makema.inzuki.app",
+  "appName": "Inzuki",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "www"
+}
