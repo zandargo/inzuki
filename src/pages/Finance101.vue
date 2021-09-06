@@ -27,14 +27,24 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { useStore } from "vuex";
 
 export default {
 	name: "findefs1",
 	setup() {
-		return {
-			baseIncome: ref(""),
-		};
+		const $store = useStore();
+		return {};
+	},
+	computed: {
+		baseIncome: {
+			get() {
+				return this.$store.state.data.db.user.baseIncome;
+			},
+			set(value) {
+				this.$store.data.commit("SetBaseIncome", { value });
+			},
+		},
 	},
 };
 </script>

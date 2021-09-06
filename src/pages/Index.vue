@@ -18,44 +18,44 @@
 
 <script>
 import { defineComponent } from "vue";
-// import { date } from "quasar";
-// import { InzukiDAO } from "../db/inzukiDAO";
-
-// const timeStamp = Date.now();
-// const formattedString = date.formatDate(timeStamp, "YYYY-MM-DDTHH:mm:ss.SSSZ");
-// const formattedDate = date.formatDate(timeStamp, "dddd, DD / MM / YYYY", {
-// 	days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
-// 	daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
-// 	months: [
-// 		"Janeiro",
-// 		"Fevereiro",
-// 		"Março",
-// 		"Abril",
-// 		"Maio",
-// 		"Junho",
-// 		"Julho",
-// 		"Agosto",
-// 		"Setembro",
-// 		"Outubro",
-// 		"Novembro",
-// 		"Dezembro",
-// 	],
-// 	monthsShort: [
-// 		"Jan",
-// 		"Fev",
-// 		"Mar",
-// 		"Abr",
-// 		"Mai",
-// 		"Jun",
-// 		"Jul",
-// 		"Ago",
-// 		"Set",
-// 		"Out",
-// 		"Nov",
-// 		"Dez",
-// 	],
-// });
-// const formattedTime = date.formatDate(timeStamp, "HH : mm : ss");
+//_ import { date } from "quasar";
+//_ import { InzukiDAO } from "../db/inzukiDAO";
+//_ const timeStamp = Date.now();
+//_ const formattedString = date.formatDate(timeStamp, "YYYY-MM-DDTHH:mm:ss.SSSZ");
+//_ const formattedDate = date.formatDate(timeStamp, "dddd, DD / MM / YYYY", {
+//_ 	days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+//_ 	daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+//_ 	months: [
+//_ 		"Janeiro",
+//_ 		"Fevereiro",
+//_ 		"Março",
+//_ 		"Abril",
+//_ 		"Maio",
+//_ 		"Junho",
+//_ 		"Julho",
+//_ 		"Agosto",
+//_ 		"Setembro",
+//_ 		"Outubro",
+//_ 		"Novembro",
+//_ 		"Dezembro",
+//_ 	],
+//_ 	monthsShort: [
+//_ 		"Jan",
+//_ 		"Fev",
+//_ 		"Mar",
+//_ 		"Abr",
+//_ 		"Mai",
+//_ 		"Jun",
+//_ 		"Jul",
+//_ 		"Ago",
+//_ 		"Set",
+//_ 		"Out",
+//_ 		"Nov",
+//_ 		"Dez",
+//_ 	],
+//_ });
+//_ const formattedTime = date.formatDate(timeStamp, "HH : mm : ss");
+import { mapState } from "vuex";
 
 export default defineComponent({
 	name: "PageIndex",
