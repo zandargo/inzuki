@@ -78,9 +78,6 @@
 </template>
 
 <script>
-import firedb from "src/boot/firebase";
-import { collection, query, where, onSnapshot } from "firebase/firestore";
-
 import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
@@ -145,21 +142,6 @@ export default defineComponent({
 			},
 		};
 	},
-	mounted() {
-		const q = query(collection(db, "worklog")); //, where("state", "==", "CA"));
-		const unsubscribe = onSnapshot(q, (snapshot) => {
-			snapshot.docChanges().forEach((change) => {
-				if (change.type === "added") {
-					console.log("New city: ", change.doc.data());
-				}
-				if (change.type === "modified") {
-					console.log("Modified city: ", change.doc.data());
-				}
-				if (change.type === "removed") {
-					console.log("Removed city: ", change.doc.data());
-				}
-			});
-		});
-	},
+	mounted() {},
 });
 </script>
