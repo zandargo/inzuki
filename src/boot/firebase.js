@@ -5,7 +5,6 @@ import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
 import {} from "firebase/firestore";
 import {} from "firebase/auth";
 
-// TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
 	apiKey: "AIzaSyCeb0rJRxG3o-TOcFAdr_9o5uffrLQXeis",
 	authDomain: "inzuki-firebase.firebaseapp.com",
