@@ -1,3 +1,4 @@
 export function SetBaseIncome(state, payload) {
-	state.db.user.baseIncome = payload.value;
+	console.log("SetBaseIncome");
+	state.db.baseIncome = payload.value;
 }

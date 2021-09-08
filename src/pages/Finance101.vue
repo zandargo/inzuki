@@ -34,18 +34,25 @@ export default {
 	name: "findefs1",
 	setup() {
 		const $store = useStore();
-		return {};
-	},
-	computed: {
-		baseIncome: {
-			get() {
-				return this.$store.state.data.db.user.baseIncome;
+		const baseIncome = computed({
+			get: () => $store.state.zData.db.baseIncome,
+			set: (value) => {
+				$store.commit("zData/SetBaseIncome", { value });
 			},
-			set(value) {
-				this.$store.data.commit("SetBaseIncome", { value });
-			},
-		},
+		});
+
+		return { baseIncome };
 	},
+	// computed: {
+	// 	baseIncome: {
+	// 		get() {
+	// 			return this.$store.state.data.db.baseIncome;
+	// 		},
+	// 		set(value) {
+	// 			this.$store.data.commit("SetBaseIncome", { value });
+	// 		},
+	// 	},
+	// },
 };
 </script>
 
