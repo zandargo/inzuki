@@ -2,10 +2,60 @@
 	<router-view />
 </template>
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
+import {
+	useStore,
+	mapMutations,
+	mapState,
+	createNamespacedHelpers,
+} from "vuex";
 
 export default defineComponent({
 	name: "App",
+	data() {
+		return {
+			// year: 0,
+			// month: 0,
+			// day: 0,
+			// hours: 0,
+			// minutes: 0,
+			// seconds: 0,
+			// formattedDate: "",
+		};
+	},
+	setup() {
+		const $store = useStore();
+		const time = computed({
+			get: () => $store.state.zData.time,
+			set: () => {
+				// setInterval(() => {
+				$store.commit("zData/SetTime", {});
+				// }, 1000);
+			},
+		});
+
+		return { time };
+	},
+	methods: {
+		...mapMutations("zData", ["SET_TIME"]),
+		setTime() {
+			setInterval(() => {
+				// const $store = useStore();
+				// $store.commit("zData/SET_TIME", {});
+				// this.time.set;
+				this.SET_TIME();
+			}, 1000);
+		},
+	},
+	mounted() {
+		// this.setTime();
+	},
+	created() {
+		this.interval = setInterval(this.setTime, 1000);
+	},
+	beforeUnmount() {
+		clearInterval(this.interval);
+	},
 });
 </script>
 
