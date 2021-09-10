@@ -24,8 +24,13 @@
 					@click="toggleLeftDrawer"
 				/>
 
-				<q-toolbar-title class="text-center text-bold q-mt-none">
-					INZUKI
+				<q-toolbar-title class="text-center q-mt-none">
+					<div v-if="section === 'INZUKI'" class="text-h3 txt-spaced-1">
+						INZUKI
+					</div>
+					<div v-if="section !== 'INZUKI'" class="text-h4">
+						{{ section }}
+					</div>
 				</q-toolbar-title>
 
 				<q-btn
@@ -37,6 +42,7 @@
 					aria-label="Home"
 					@click="closeLeftDrawer"
 					:to="{ name: 'home' }"
+					:class="{ disable: !homeBtnOn.value }"
 				/>
 			</q-toolbar>
 		</q-header>
@@ -54,6 +60,7 @@
 					v-for="link in essentialLinks"
 					:key="link.title"
 					v-bind="link"
+					@click="setSection(link.title)"
 				/>
 			</q-list>
 		</q-drawer>
@@ -128,20 +135,45 @@ export default defineComponent({
 		EssentialLink,
 	},
 
+	data() {
+		return {};
+	},
+
 	setup() {
 		const leftDrawerOpen = ref(false);
+		const section = ref("INZUKI");
+		const homeBtnOn = ref(false);
 
 		return {
 			essentialLinks: linksList,
 			leftDrawerOpen,
+			section,
+			homeBtnOn,
 			toggleLeftDrawer() {
 				leftDrawerOpen.value = !leftDrawerOpen.value;
 			},
 			closeLeftDrawer() {
 				leftDrawerOpen.value = false;
+				section.value = "INZUKI";
+				homeBtnOn.value = true;
+			},
+			setSection(val) {
+				section.value = val;
+				val === "INZUKI"
+					? (homeBtnOn.value = false)
+					: (homeBtnOn.value = true);
 			},
 		};
 	},
 	mounted() {},
 });
 </script>
+
+<style lang="scss" scoped>
+.enable {
+	opacity: 1;
+}
+.disable {
+	opacity: 0.2;
+}
+</style>
