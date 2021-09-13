@@ -3,9 +3,9 @@ export function SetBaseIncome(state, payload) {
 	state.db.baseIncome = payload.value;
 }
 
-function checkSingleDigit(digit) {
-	return ("0" + digit).slice(-2);
-}
+// function checkSingleDigit(digit) {
+// 	return ("0" + digit).slice(-2);
+// }
 function joinDate(time, opt, sep) {
 	function format(m) {
 		let f = new Intl.DateTimeFormat("en", m);
@@ -26,3 +26,7 @@ export function SET_TIME(state) {
 	let opt = [{ day: "2-digit" }, { month: "2-digit" }, { year: "numeric" }];
 	state.time.formattedDate = joinDate(date, opt, " / ");
 }
+
+// export function SET_SECTION(state, valSection) {
+// 	state.app.section = valSection;
+// }

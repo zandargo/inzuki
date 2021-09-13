@@ -19,6 +19,12 @@
 								input-class="text-right text-h5"
 							/>
 						</q-card-section>
+
+						<q-separator inset class="text-h1" />
+
+						<q-card-section>
+							<!-- [ ] Criar resumo da hora extra bruta -->
+						</q-card-section>
 					</q-card>
 				</div>
 			</div>

@@ -1,5 +1,5 @@
 <template>
-	<q-layout view="hHh lpR fFf" class="">
+	<q-layout view="hHh lpR fFf" class="no-scroll hide-scrollbar">
 		<q-header
 			elevated
 			class="
@@ -12,7 +12,7 @@
 			"
 			height-hint="98"
 		>
-			<q-toolbar>
+			<q-toolbar class="">
 				<q-btn
 					flat
 					dense
@@ -39,10 +39,20 @@
 					round
 					size="22px"
 					icon="home"
+					class="disable"
+					v-if="section === 'INZUKI'"
+				/>
+				<q-btn
+					v-model="homeBtnOn"
+					flat
+					dense
+					round
+					size="22px"
+					icon="home"
 					aria-label="Home"
 					@click="closeLeftDrawer"
 					:to="{ name: 'home' }"
-					:class="{ disable: !homeBtnOn.value }"
+					v-if="section !== 'INZUKI'"
 				/>
 			</q-toolbar>
 		</q-header>
@@ -76,7 +86,7 @@
 			<q-toolbar> </q-toolbar>
 		</q-footer>
 
-		<q-page-container class="q-pa-lg">
+		<q-page-container class="q-pa-lg window-height">
 			<keep-alive>
 				<router-view />
 			</keep-alive>
@@ -136,7 +146,9 @@ export default defineComponent({
 	},
 
 	data() {
-		return {};
+		return {
+			isHomeOn: false,
+		};
 	},
 
 	setup() {
@@ -149,23 +161,20 @@ export default defineComponent({
 			leftDrawerOpen,
 			section,
 			homeBtnOn,
+
 			toggleLeftDrawer() {
 				leftDrawerOpen.value = !leftDrawerOpen.value;
 			},
 			closeLeftDrawer() {
 				leftDrawerOpen.value = false;
 				section.value = "INZUKI";
-				homeBtnOn.value = true;
+				// homeBtnOn.value = true;
 			},
 			setSection(val) {
 				section.value = val;
-				val === "INZUKI"
-					? (homeBtnOn.value = false)
-					: (homeBtnOn.value = true);
 			},
 		};
 	},
-	mounted() {},
 });
 </script>
 

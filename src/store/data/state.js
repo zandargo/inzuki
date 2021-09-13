@@ -1,5 +1,8 @@
 export default function () {
 	return {
+		app: {
+			section: "",
+		},
 		time: {
 			stamp: "",
 

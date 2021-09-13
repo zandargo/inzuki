@@ -38,23 +38,24 @@ export default defineComponent({
 	},
 	methods: {
 		...mapMutations("zData", ["SET_TIME"]),
-		setTime() {
-			setInterval(() => {
-				// const $store = useStore();
-				// $store.commit("zData/SET_TIME", {});
-				// this.time.set;
-				this.SET_TIME();
-			}, 1000);
-		},
+		// setTime() {
+		// 	setInterval(() => {
+		// 		// const $store = useStore();
+		// 		// $store.commit("zData/SET_TIME", {});
+		// 		// this.time.set;
+		// 		this.SET_TIME();
+		// 	}, 1000);
+		// },
 	},
 	mounted() {
 		// this.setTime();
 	},
 	created() {
-		this.interval = setInterval(this.setTime, 1000);
+		this.interval = setInterval(this.SET_TIME, 1000);
 	},
 	beforeUnmount() {
 		clearInterval(this.interval);
+		// clearInterval(this.setTime());
 	},
 });
 </script>

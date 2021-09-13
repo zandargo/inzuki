@@ -1,34 +1,30 @@
 <template>
 	<div>
+		<!-- [ ] Divisão de página com rolagem apenas na parte inferior -->
+		<!-- [ ] Resumo das HN, HE feitas, HE meta, valor relativo,  -->
 		<q-page>
-			<div>
-				<!-- <q-card class="title-card q-ma-sm" bordered elevated>
-					<q-card-section class="text-center q-pa-xs">
-						<h6>{{ formattedDate }}</h6>
-					</q-card-section>
-					<q-separator inset />
-					<q-card-section class="text-center q-pa-xs">
-						<h4>{{ hours + ":" + minutes + ":" + seconds }}</h4>
-					</q-card-section>
-				</q-card> -->
+			<div class="column">
+				<div class="col-md-4 col-4"></div>
 
-				<q-card class="title-card q-ma-sm" bordered elevated>
-					<q-card-section class="text-center q-pa-xs">
-						<h6>{{ time.formattedDate }}</h6>
-					</q-card-section>
-					<q-separator inset />
-					<q-card-section class="text-center q-pa-xs">
-						<h4>
-							{{
-								checkSingleDigit(time.hours) +
-								":" +
-								checkSingleDigit(time.minutes) +
-								":" +
-								checkSingleDigit(time.seconds)
-							}}
-						</h4>
-					</q-card-section>
-				</q-card>
+				<div class="col-auto">
+					<q-card class="title-card q-ma-sm" bordered elevated>
+						<q-card-section class="text-center q-pa-xs">
+							<h6>{{ time.formattedDate }}</h6>
+						</q-card-section>
+						<q-separator inset />
+						<q-card-section class="text-center q-pa-xs">
+							<h4>
+								{{
+									checkSingleDigit(time.hours) +
+									":" +
+									checkSingleDigit(time.minutes) +
+									":" +
+									checkSingleDigit(time.seconds)
+								}}
+							</h4>
+						</q-card-section>
+					</q-card>
+				</div>
 			</div>
 		</q-page>
 	</div>
@@ -79,13 +75,13 @@ export default defineComponent({
 	name: "PageIndex",
 	data() {
 		return {
-			// 	year: 0,
-			// 	month: 0,
-			// 	day: 0,
-			// 	hours: 0,
-			// 	minutes: 0,
-			// 	seconds: 0,
-			// 	formattedDate: "",
+			//_ 	year: 0,
+			//_ 	month: 0,
+			//_ 	day: 0,
+			//_ 	hours: 0,
+			//_ 	minutes: 0,
+			//_ 	seconds: 0,
+			//_ 	formattedDate: "",
 		};
 	},
 	setup() {
@@ -98,43 +94,43 @@ export default defineComponent({
 		});
 
 		return { time };
-		// return {
-		// timeStamp,
-		// formattedDate,
-		// formattedTime,
-		// };
+		//_ return {
+		//_ timeStamp,
+		//_ formattedDate,
+		//_ formattedTime,
+		//_ };
 	},
 	methods: {
-		// setTime() {
-		// 	setInterval(() => {
-		// 		const date = new Date();
-		// 		this.year = date.getFullYear();
-		// 		this.month = this.checkSingleDigit(date.getMonth());
-		// 		this.day = this.checkSingleDigit(date.getDate());
-		// 		this.hours = this.checkSingleDigit(date.getHours());
-		// 		this.minutes = this.checkSingleDigit(date.getMinutes());
-		// 		this.seconds = this.checkSingleDigit(date.getSeconds());
-		// 		let opt = [
-		// 			{ day: "2-digit" },
-		// 			{ month: "2-digit" },
-		// 			{ year: "numeric" },
-		// 		];
-		// 		this.formattedDate = this.joinDate(date, opt, " / ");
-		// 	}, 1000);
-		// },
+		//_ setTime() {
+		//_ 	setInterval(() => {
+		//_ 		const date = new Date();
+		//_ 		this.year = date.getFullYear();
+		//_ 		this.month = this.checkSingleDigit(date.getMonth());
+		//_ 		this.day = this.checkSingleDigit(date.getDate());
+		//_ 		this.hours = this.checkSingleDigit(date.getHours());
+		//_ 		this.minutes = this.checkSingleDigit(date.getMinutes());
+		//_ 		this.seconds = this.checkSingleDigit(date.getSeconds());
+		//_ 		let opt = [
+		//_ 			{ day: "2-digit" },
+		//_ 			{ month: "2-digit" },
+		//_ 			{ year: "numeric" },
+		//_ 		];
+		//_ 		this.formattedDate = this.joinDate(date, opt, " / ");
+		//_ 	}, 1000);
+		//_ },
 		checkSingleDigit(digit) {
 			return ("0" + digit).slice(-2);
 		},
-		// joinDate(time, opt, sep) {
-		// 	function format(m) {
-		// 		let f = new Intl.DateTimeFormat("en", m);
-		// 		return f.format(time);
-		// 	}
-		// 	return opt.map(format).join(sep);
-		// },
+		//_ joinDate(time, opt, sep) {
+		//_ 	function format(m) {
+		//_ 		let f = new Intl.DateTimeFormat("en", m);
+		//_ 		return f.format(time);
+		//_ 	}
+		//_ 	return opt.map(format).join(sep);
+		//_ },
 	},
 	mounted() {
-		// this.setTime();
+		//_ this.setTime();
 	},
 });
 </script>
@@ -142,6 +138,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 .my-card {
 	width: 100%;
-	// max-width: 250px;
+	//_ max-width: 250px;
 }
 </style>
