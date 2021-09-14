@@ -2,11 +2,9 @@
 	<div>
 		<!-- [ ] Divisão de página com rolagem apenas na parte inferior -->
 		<!-- [ ] Resumo das HN, HE feitas, HE meta, valor relativo,  -->
-		<q-page>
-			<div class="column">
-				<div class="col-md-4 col-4"></div>
-
-				<div class="col-auto">
+		<q-page class="no-padding">
+			<div class="column no-padding">
+				<div class="col-4 no-padding">
 					<q-card class="title-card q-ma-sm" bordered elevated>
 						<q-card-section class="text-center q-pa-xs">
 							<h6>{{ time.formattedDate }}</h6>
@@ -24,6 +22,26 @@
 							</h4>
 						</q-card-section>
 					</q-card>
+				</div>
+
+				<q-separator size="2px" />
+
+				<div class="col-8">
+					<q-virtual-scroll
+						style="max-height: 800px"
+						:items="worklog"
+						separator
+					>
+						<template v-slot="{ item, index }">
+							<q-item :key="index" dense clickable v-ripple>
+								<q-item-section>
+									<q-item-label>
+										#{{ index }} - {{ item.label }}
+									</q-item-label>
+								</q-item-section>
+							</q-item>
+						</template>
+					</q-virtual-scroll>
 				</div>
 			</div>
 		</q-page>
@@ -93,7 +111,16 @@ export default defineComponent({
 			},
 		});
 
-		return { time };
+		const maxSize = 10000;
+		const worklog = [];
+
+		for (let i = 0; i < maxSize; i++) {
+			worklog.push({
+				label: "Option " + (i + 1),
+			});
+		}
+
+		return { time, worklog };
 		//_ return {
 		//_ timeStamp,
 		//_ formattedDate,

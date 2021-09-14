@@ -86,7 +86,7 @@
 			<q-toolbar> </q-toolbar>
 		</q-footer>
 
-		<q-page-container class="q-pa-lg window-height">
+		<q-page-container class="window-height">
 			<keep-alive>
 				<router-view />
 			</keep-alive>
