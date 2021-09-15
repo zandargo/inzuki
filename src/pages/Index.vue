@@ -26,7 +26,7 @@
 
 				<q-separator size="2px" />
 
-				<div class="col-8">
+				<div class="col-8 col-auto">
 					<q-virtual-scroll
 						style="max-height: 800px"
 						:items="worklog"
@@ -35,9 +35,12 @@
 						<template v-slot="{ item, index }">
 							<q-item :key="index" dense clickable v-ripple>
 								<q-item-section>
-									<q-item-label>
-										#{{ index }} - {{ item.label }}
+									<q-item-label class="text-h6 no-margin">
+										{{ item.strWeekDay }}
 									</q-item-label>
+									<q-item-label class="text-h5 no-margin">{{
+										item.strDay
+									}}</q-item-label>
 								</q-item-section>
 							</q-item>
 						</template>
@@ -49,45 +52,10 @@
 </template>
 
 <script>
-//_ import { date } from "quasar";
-//_ import { InzukiDAO } from "../db/inzukiDAO";
-//_ const timeStamp = Date.now();
-//_ const formattedString = date.formatDate(timeStamp, "YYYY-MM-DDTHH:mm:ss.SSSZ");
-//_ const formattedDate = date.formatDate(timeStamp, "dddd, DD / MM / YYYY", {
-//_ 	days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
-//_ 	daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
-//_ 	months: [
-//_ 		"Janeiro",
-//_ 		"Fevereiro",
-//_ 		"Março",
-//_ 		"Abril",
-//_ 		"Maio",
-//_ 		"Junho",
-//_ 		"Julho",
-//_ 		"Agosto",
-//_ 		"Setembro",
-//_ 		"Outubro",
-//_ 		"Novembro",
-//_ 		"Dezembro",
-//_ 	],
-//_ 	monthsShort: [
-//_ 		"Jan",
-//_ 		"Fev",
-//_ 		"Mar",
-//_ 		"Abr",
-//_ 		"Mai",
-//_ 		"Jun",
-//_ 		"Jul",
-//_ 		"Ago",
-//_ 		"Set",
-//_ 		"Out",
-//_ 		"Nov",
-//_ 		"Dez",
-//_ 	],
-//_ });
-//_ const formattedTime = date.formatDate(timeStamp, "HH : mm : ss");
 import { defineComponent, computed } from "vue";
 import { useStore, mapState } from "vuex";
+import { format, formatDistance, formatRelative, subDays } from "date-fns";
+import { ptBR, en } from "date-fns/locale";
 
 export default defineComponent({
 	name: "PageIndex",
@@ -114,8 +82,15 @@ export default defineComponent({
 		const maxSize = 10000;
 		const worklog = [];
 
+		let startDate = new Date(2015, 1, 1);
+		let currentDate = new Date();
 		for (let i = 0; i < maxSize; i++) {
+			currentDate = startDate.valueOf() + i * 1000 * 3600 * 24;
 			worklog.push({
+				valDate: currentDate,
+				strDate: format(currentDate, "dd-MM-yy"),
+				strDay: format(currentDate, "dd"),
+				strWeekDay: format(currentDate, "eeeeee", { locale: ptBR }),
 				label: "Option " + (i + 1),
 			});
 		}
