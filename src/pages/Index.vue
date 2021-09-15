@@ -33,7 +33,18 @@
 						separator
 					>
 						<template v-slot="{ item, index }">
-							<q-item :key="index" dense clickable v-ripple>
+							<q-item
+								:key="index"
+								dense
+								clickable
+								v-ripple
+								:style="[
+									true
+										? { 'background-color': 'grey-5' }
+										: { 'background-color': 'blue' },
+									true ? { color: 'blue' } : { color: 'black' },
+								]"
+							>
 								<q-item-section>
 									<q-item-label class="text-h6 no-margin">
 										{{ item.strWeekDay }}
