@@ -26,36 +26,62 @@
 
 				<q-separator size="2px" />
 
-				<div class="col-8 col-auto">
-					<q-virtual-scroll
-						style="max-height: 800px"
-						:items="worklog"
-						separator
-					>
-						<template v-slot="{ item, index }">
-							<q-item
-								:key="index"
-								dense
-								clickable
-								v-ripple
-								:style="[
-									true
-										? { 'background-color': 'grey-5' }
-										: { 'background-color': 'blue' },
-									true ? { color: 'blue' } : { color: 'black' },
-								]"
-							>
-								<q-item-section>
-									<q-item-label class="text-h6 no-margin">
-										{{ item.strWeekDay }}
-									</q-item-label>
-									<q-item-label class="text-h5 no-margin">{{
-										item.strDay
-									}}</q-item-label>
-								</q-item-section>
-							</q-item>
-						</template>
-					</q-virtual-scroll>
+				<div class="col-8 items-stretch column q-pa-xs">
+					<q-card class="no-margin fit-parent" bordered elevated>
+						<q-virtual-scroll
+							style="max-height: 100%"
+							:items="worklog"
+							separator
+							color="inzuki"
+							class="text-inzuki"
+						>
+							<template v-slot="{ item, index }">
+								<q-item
+									:key="index"
+									dense
+									:style="[
+										item.valWeekDay != 1
+											? { 'background-color': '#FFFDE7' }
+											: { 'background-color': '#F1F8E9' },
+										true ? {} : {},
+									]"
+								>
+									<q-item-section class="col-1 items-center">
+										<q-item-label class="text-h6">
+											{{ item.strWeekDay }}
+										</q-item-label>
+										<q-item-label
+											class="text-h5 text-bold"
+											color="inzuki"
+											>{{ item.strDay }}</q-item-label
+										>
+									</q-item-section>
+
+									<q-separator vertical spaced />
+
+									<q-item-section class="">
+										<q-item-label class="">
+											Entrada - {{ item.id }}
+										</q-item-label>
+										<q-separator />
+										<q-item-label class=""> Saída </q-item-label>
+									</q-item-section>
+
+									<q-separator vertical spaced />
+
+									<q-item-section class="col-3">
+										<q-item-label class="text-caption">
+											H.E. 0,0</q-item-label
+										>
+										<q-separator />
+										<q-item-label class="text-caption">
+											R$ 0,00
+										</q-item-label>
+									</q-item-section>
+								</q-item>
+							</template>
+						</q-virtual-scroll>
+					</q-card>
 				</div>
 			</div>
 		</q-page>
@@ -63,7 +89,7 @@
 </template>
 
 <script>
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, ref, onMounted } from "vue";
 import { useStore, mapState } from "vuex";
 import { format, formatDistance, formatRelative, subDays } from "date-fns";
 import { ptBR, en } from "date-fns/locale";
@@ -71,15 +97,7 @@ import { ptBR, en } from "date-fns/locale";
 export default defineComponent({
 	name: "PageIndex",
 	data() {
-		return {
-			//_ 	year: 0,
-			//_ 	month: 0,
-			//_ 	day: 0,
-			//_ 	hours: 0,
-			//_ 	minutes: 0,
-			//_ 	seconds: 0,
-			//_ 	formattedDate: "",
-		};
+		return {};
 	},
 	setup() {
 		const $store = useStore();
@@ -93,64 +111,38 @@ export default defineComponent({
 		const maxSize = 10000;
 		const worklog = [];
 
-		let startDate = new Date(2015, 1, 1);
+		let startDate = new Date(2015, 1, 1, 12, 0, 0, 0);
 		let currentDate = new Date();
 		for (let i = 0; i < maxSize; i++) {
 			currentDate = startDate.valueOf() + i * 1000 * 3600 * 24;
 			worklog.push({
+				id: Math.round(currentDate.valueOf() / (1000 * 3600 * 24)),
 				valDate: currentDate,
 				strDate: format(currentDate, "dd-MM-yy"),
 				strDay: format(currentDate, "dd"),
 				strWeekDay: format(currentDate, "eeeeee", { locale: ptBR }),
+				valWeekDay: format(currentDate, "e"),
 				label: "Option " + (i + 1),
 			});
 		}
 
 		return { time, worklog };
-		//_ return {
-		//_ timeStamp,
-		//_ formattedDate,
-		//_ formattedTime,
-		//_ };
 	},
 	methods: {
-		//_ setTime() {
-		//_ 	setInterval(() => {
-		//_ 		const date = new Date();
-		//_ 		this.year = date.getFullYear();
-		//_ 		this.month = this.checkSingleDigit(date.getMonth());
-		//_ 		this.day = this.checkSingleDigit(date.getDate());
-		//_ 		this.hours = this.checkSingleDigit(date.getHours());
-		//_ 		this.minutes = this.checkSingleDigit(date.getMinutes());
-		//_ 		this.seconds = this.checkSingleDigit(date.getSeconds());
-		//_ 		let opt = [
-		//_ 			{ day: "2-digit" },
-		//_ 			{ month: "2-digit" },
-		//_ 			{ year: "numeric" },
-		//_ 		];
-		//_ 		this.formattedDate = this.joinDate(date, opt, " / ");
-		//_ 	}, 1000);
-		//_ },
 		checkSingleDigit(digit) {
 			return ("0" + digit).slice(-2);
 		},
-		//_ joinDate(time, opt, sep) {
-		//_ 	function format(m) {
-		//_ 		let f = new Intl.DateTimeFormat("en", m);
-		//_ 		return f.format(time);
-		//_ 	}
-		//_ 	return opt.map(format).join(sep);
-		//_ },
 	},
-	mounted() {
-		//_ this.setTime();
-	},
+	mounted() {},
 });
 </script>
 
 <style lang="scss" scoped>
 .my-card {
 	width: 100%;
-	//_ max-width: 250px;
+}
+
+.fit-parent {
+	height: calc(100vh - 200px);
 }
 </style>
