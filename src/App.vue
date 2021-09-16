@@ -52,16 +52,18 @@ export default defineComponent({
 	},
 	created() {
 		this.interval = setInterval(this.SET_TIME, 1000);
+		// this.SET_TIME;
 	},
 	beforeUnmount() {
+		//_ clearInterval(this.setTime());
 		clearInterval(this.interval);
-		// clearInterval(this.setTime());
 	},
 });
 </script>
 
 <style lang="scss">
 @import "./css/app.scss";
+@import "./css/quasar.variables.scss";
 @font-face {
 	font-family: "RobotoCondensed";
 	//_ src: url('./assets/fonts/RobotoCondensed-Regular.ttf') format('truetype');

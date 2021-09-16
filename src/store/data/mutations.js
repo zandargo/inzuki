@@ -25,6 +25,9 @@ export function SET_TIME(state) {
 	state.time.seconds = date.getSeconds();
 	let opt = [{ day: "2-digit" }, { month: "2-digit" }, { year: "numeric" }];
 	state.time.formattedDate = joinDate(date, opt, " / ");
+
+	let idxToday = Math.round(date.valueOf() / 86400000);
+	state.time.idxToday = idxToday - state.app.idxDate0;
 }
 
 // export function SET_SECTION(state, valSection) {

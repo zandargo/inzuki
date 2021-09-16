@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<!-- [ ] Divisão de página com rolagem apenas na parte inferior -->
+		<!-- [x] Divisão de página com rolagem apenas na parte inferior -->
 		<!-- [ ] Resumo das HN, HE feitas, HE meta, valor relativo,  -->
-		<q-page class="no-padding">
+		<q-page class="no-padding no-selection">
 			<div class="column no-padding">
 				<div class="col-4 no-padding">
 					<q-card class="title-card q-ma-sm" bordered elevated>
@@ -21,6 +21,27 @@
 								}}
 							</h4>
 						</q-card-section>
+						<q-separator inset />
+						<q-card-section class="text-center q-pa-xs">
+							<h6>Teste</h6>
+							<!-- <q-input
+								style="min-width: 2em"
+								type="number"
+								v-model.number="vlIndex"
+								:min="0"
+								:max="9999"
+								label="Scroll to index"
+								input-class="text-right"
+								outlined
+							/>
+							<q-btn
+								class="q-ml-sm"
+								label="Go"
+								no-caps
+								color="primary"
+								@click="executeScroll"
+							/> -->
+						</q-card-section>
 					</q-card>
 				</div>
 
@@ -29,22 +50,28 @@
 				<div class="col-8 items-stretch column q-pa-xs">
 					<q-card class="no-margin fit-parent" bordered elevated>
 						<q-virtual-scroll
+							ref="vlRef"
+							component="q-list"
 							style="max-height: 100%"
 							:items="worklog"
+							@virtual-scroll="onVirtualScroll"
 							separator
 							color="inzuki"
 							class="text-inzuki"
 						>
 							<template v-slot="{ item, index }">
 								<q-item
-									:key="index"
 									dense
+									:key="index"
 									:style="[
 										item.valWeekDay != 1
 											? { 'background-color': '#FFFDE7' }
 											: { 'background-color': '#F1F8E9' },
 										true ? {} : {},
 									]"
+									:class="{
+										'is-today': index == time.idxToday,
+									}"
 								>
 									<q-item-section class="col-1 items-center">
 										<q-item-label class="text-h6">
@@ -61,7 +88,7 @@
 
 									<q-item-section class="">
 										<q-item-label class="">
-											Entrada - {{ item.id }}
+											Entrada - {{ item.id }} - {{ item.strDate }}
 										</q-item-label>
 										<q-separator />
 										<q-item-label class=""> Saída </q-item-label>
@@ -111,12 +138,12 @@ export default defineComponent({
 		const maxSize = 10000;
 		const worklog = [];
 
-		let startDate = new Date(2015, 1, 1, 12, 0, 0, 0);
+		let startDate = new Date(2015, 0, 1, 12, 0, 0, 0);
 		let currentDate = new Date();
 		for (let i = 0; i < maxSize; i++) {
-			currentDate = startDate.valueOf() + i * 1000 * 3600 * 24;
+			currentDate = startDate.valueOf() + i * 86400000;
 			worklog.push({
-				id: Math.round(currentDate.valueOf() / (1000 * 3600 * 24)),
+				id: Math.round(currentDate.valueOf() / 86400000),
 				valDate: currentDate,
 				strDate: format(currentDate, "dd-MM-yy"),
 				strDay: format(currentDate, "dd"),
@@ -126,23 +153,55 @@ export default defineComponent({
 			});
 		}
 
-		return { time, worklog };
+		// Object.freeze(worklog);
+
+		const vlRef = ref(null);
+		const vlIndex = ref(2440);
+
+		onMounted(() => {
+			// vlRef.value.scrollTo(vlIndex.value);
+			vlRef.value.scrollTo(time.value.idxToday);
+		});
+
+		return {
+			time,
+			worklog,
+			vlRef,
+			vlIndex,
+
+			//* Função que atualiza o "data" index ao rolar o vl. Utilizar para jogar as informações no card resumo
+			onVirtualScroll({ index }) {
+				vlIndex.value = index;
+			},
+
+			//* Função usada pelo botão de exemplo no docs do quasar
+			executeScroll() {
+				vlRef.value.scrollTo(vlIndex.value, "start-force");
+			},
+		};
 	},
 	methods: {
 		checkSingleDigit(digit) {
 			return ("0" + digit).slice(-2);
 		},
 	},
-	mounted() {},
 });
 </script>
 
 <style lang="scss" scoped>
+@import "src/css/app.scss";
+@import "src/css/quasar.variables.scss";
+
 .my-card {
 	width: 100%;
 }
 
 .fit-parent {
-	height: calc(100vh - 200px);
+	height: calc(100vh - 250px);
+}
+
+.is-today {
+	background-color: $bgToday !important;
+	color: white;
 }
 </style>
