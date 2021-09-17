@@ -160,8 +160,6 @@ export default defineComponent({
 			});
 		}
 
-		// Object.freeze(worklog);
-
 		const vlRef = ref(null);
 		const vlIndex = ref(2440);
 		const sPeriod = ref("");
@@ -175,9 +173,6 @@ export default defineComponent({
 
 		onMounted(() => {
 			vlRef.value.scrollTo(time.value.todayIndex, "center-force");
-			// sPeriod.value = format(Date.now(), "MMMM / yyyy", {
-			// 	locale: ptBR,
-			// }).toUpperCase();
 		});
 
 		return {
