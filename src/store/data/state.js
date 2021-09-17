@@ -1,14 +1,21 @@
 export default function () {
 	let startDate = new Date(2015, 0, 1, 12, 0, 0);
-	let idx0 = Math.round(startDate.valueOf() / (1000 * 3600 * 24));
+	let idx0 = Math.round(startDate.valueOf() / 86400000);
 
 	return {
 		app: {
 			section: "",
 			idxDate0: idx0,
 		},
+		log: {
+			currentIndex: 0,
+			currentMonth: "",
+			currentYear: "",
+			idxCurrent: 0,
+		},
 		time: {
 			stamp: "",
+			todayIndex: 0,
 			idxToday: 0,
 
 			year: 0,

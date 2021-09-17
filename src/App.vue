@@ -1,6 +1,7 @@
 <template>
 	<router-view />
 </template>
+
 <script>
 import { defineComponent, computed } from "vue";
 import {
@@ -29,7 +30,7 @@ export default defineComponent({
 			get: () => $store.state.zData.time,
 			set: () => {
 				// setInterval(() => {
-				$store.commit("zData/SetTime", {});
+				$store.commit("zData/SET_TIME", {}); //! ALTERADO
 				// }, 1000);
 			},
 		});

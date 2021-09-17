@@ -6,7 +6,7 @@
 			<div class="column no-padding">
 				<div class="col-4 no-padding">
 					<q-card class="title-card q-ma-sm" bordered elevated>
-						<q-card-section class="text-center q-pa-xs">
+						<!-- <q-card-section class="text-center q-pa-xs">
 							<h6>{{ time.formattedDate }}</h6>
 						</q-card-section>
 						<q-separator inset />
@@ -21,9 +21,9 @@
 								}}
 							</h4>
 						</q-card-section>
-						<q-separator inset />
+						<q-separator inset /> -->
 						<q-card-section class="text-center q-pa-xs">
-							<h6>Teste</h6>
+							<h5>{{ log.currentMonth }} / {{ log.currentYear }}</h5>
 							<!-- <q-input
 								style="min-width: 2em"
 								type="number"
@@ -55,6 +55,7 @@
 							style="max-height: 100%"
 							:items="worklog"
 							@virtual-scroll="onVirtualScroll"
+							@gohome="goToday"
 							separator
 							color="inzuki"
 							class="text-inzuki"
@@ -63,14 +64,11 @@
 								<q-item
 									dense
 									:key="index"
-									:style="[
-										item.valWeekDay != 1
-											? { 'background-color': '#FFFDE7' }
-											: { 'background-color': '#F1F8E9' },
-										true ? {} : {},
-									]"
 									:class="{
-										'is-today': index == time.idxToday,
+										'is-workday': item.valWeekDay != 1,
+										'is-freeday': item.valWeekDay == 1,
+										'is-hollyday': false,
+										'is-today': index == time.todayIndex,
 									}"
 								>
 									<q-item-section class="col-1 items-center">
@@ -117,21 +115,30 @@
 
 <script>
 import { defineComponent, computed, ref, onMounted } from "vue";
-import { useStore, mapState } from "vuex";
+import { useStore } from "vuex";
 import { format, formatDistance, formatRelative, subDays } from "date-fns";
 import { ptBR, en } from "date-fns/locale";
 
 export default defineComponent({
 	name: "PageIndex",
 	data() {
-		return {};
+		return {
+			midIndex: 1,
+			strPeriod: "str001",
+		};
 	},
 	setup() {
 		const $store = useStore();
 		const time = computed({
 			get: () => $store.state.zData.time,
 			set: () => {
-				$store.commit("zData/SetTime", {});
+				$store.commit("zData/SetTime", {}); //! Ativo ???
+			},
+		});
+		const log = computed({
+			get: () => $store.state.zData.log,
+			set: () => {
+				$store.commit("zData/SET_LOG_INDEX", { value });
 			},
 		});
 
@@ -143,13 +150,13 @@ export default defineComponent({
 		for (let i = 0; i < maxSize; i++) {
 			currentDate = startDate.valueOf() + i * 86400000;
 			worklog.push({
-				id: Math.round(currentDate.valueOf() / 86400000),
+				// id: Math.round(currentDate.valueOf() / 86400000),
 				valDate: currentDate,
 				strDate: format(currentDate, "dd-MM-yy"),
 				strDay: format(currentDate, "dd"),
 				strWeekDay: format(currentDate, "eeeeee", { locale: ptBR }),
 				valWeekDay: format(currentDate, "e"),
-				label: "Option " + (i + 1),
+				strMMyy: format(currentDate, "MMMM / yyyy", { locale: ptBR }),
 			});
 		}
 
@@ -157,27 +164,40 @@ export default defineComponent({
 
 		const vlRef = ref(null);
 		const vlIndex = ref(2440);
+		const sPeriod = ref("");
+
+		const setCurrentIndex = (value) =>
+			$store.commit("zData/SET_LOG_INDEX", { value });
+
+		const goToday = () => {
+			vlRef.value.scrollTo(time.value.todayIndex, "center-force");
+		};
 
 		onMounted(() => {
-			// vlRef.value.scrollTo(vlIndex.value);
-			vlRef.value.scrollTo(time.value.idxToday);
+			vlRef.value.scrollTo(time.value.todayIndex, "center-force");
+			// sPeriod.value = format(Date.now(), "MMMM / yyyy", {
+			// 	locale: ptBR,
+			// }).toUpperCase();
 		});
 
 		return {
 			time,
+			log,
 			worklog,
 			vlRef,
 			vlIndex,
+			sPeriod,
+			setCurrentIndex,
 
-			//* Função que atualiza o "data" index ao rolar o vl. Utilizar para jogar as informações no card resumo
 			onVirtualScroll({ index }) {
 				vlIndex.value = index;
+				setCurrentIndex(index);
 			},
 
-			//* Função usada pelo botão de exemplo no docs do quasar
-			executeScroll() {
-				vlRef.value.scrollTo(vlIndex.value, "start-force");
-			},
+			goToday,
+			// goToday() {
+			// 	vlRef.value.scrollTo(time.value.todayIndex, "center-force");
+			// },
 		};
 	},
 	methods: {
@@ -186,6 +206,13 @@ export default defineComponent({
 		},
 	},
 });
+
+//> :style="[
+//> 	item.valWeekDay != 1
+//> 		? { 'background-color': '#FFFDE7' }
+//> 		: { 'background-color': '#F1F8E9' },
+//> 	true ? {} : {},
+//> ]"
 </script>
 
 <style lang="scss" scoped>
@@ -200,8 +227,19 @@ export default defineComponent({
 	height: calc(100vh - 250px);
 }
 
+.is-workday {
+	background-color: $bgWorkDay;
+}
+.is-freeday {
+	background-color: $bgFreeDay;
+}
+
+.is-hollyday {
+	background-color: $bgHollyday !important;
+}
+
 .is-today {
 	background-color: $bgToday !important;
-	color: white;
+	color: white !important;
 }
 </style>

@@ -40,7 +40,7 @@
 					size="22px"
 					icon="home"
 					class="disable"
-					v-if="section === 'INZUKI'"
+					v-if="section === 'INZUKI' && time.todayIndex == log.idxCurrent"
 				/>
 				<q-btn
 					v-model="homeBtnOn"
@@ -50,9 +50,9 @@
 					size="22px"
 					icon="home"
 					aria-label="Home"
-					@click="closeLeftDrawer"
+					@click="goHome"
 					:to="{ name: 'home' }"
-					v-if="section !== 'INZUKI'"
+					v-if="section !== 'INZUKI' || time.todayIndex != log.idxCurrent"
 				/>
 			</q-toolbar>
 		</q-header>
@@ -136,7 +136,8 @@ const linksList = [
 	},
 ];
 
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, computed } from "vue";
+import { useStore } from "vuex";
 
 export default defineComponent({
 	name: "MainLayout",
@@ -150,26 +151,55 @@ export default defineComponent({
 			isHomeOn: false,
 		};
 	},
+	emits: ["gohome"],
 
 	setup() {
 		const leftDrawerOpen = ref(false);
 		const section = ref("INZUKI");
 		const homeBtnOn = ref(false);
 
+		const $store = useStore();
+		const time = computed({
+			get: () => $store.state.zData.time,
+			set: () => {
+				$store.commit("zData/SetTime", {}); //! Ativo ???
+			},
+		});
+		const log = computed({
+			get: () => $store.state.zData.log,
+			set: () => {
+				$store.commit("zData/SET_LOG_INDEX", { value });
+			},
+		});
+
+		// const goHome = () => {
+		// 	leftDrawerOpen.value = false;
+		// 	section.value = "INZUKI";
+		// 	// homeBtnOn.value = true;
+		// 	this.$emit("gohome");
+		// };
+
 		return {
 			essentialLinks: linksList,
 			leftDrawerOpen,
 			section,
 			homeBtnOn,
+			time,
+			log,
 
 			toggleLeftDrawer() {
 				leftDrawerOpen.value = !leftDrawerOpen.value;
 			},
-			closeLeftDrawer() {
+
+			// goHome,
+
+			goHome() {
 				leftDrawerOpen.value = false;
 				section.value = "INZUKI";
 				// homeBtnOn.value = true;
+				// this.$emit("gohome");
 			},
+
 			setSection(val) {
 				section.value = val;
 			},
