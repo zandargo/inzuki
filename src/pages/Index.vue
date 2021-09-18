@@ -42,6 +42,17 @@
 								@click="executeScroll"
 							/> -->
 						</q-card-section>
+
+						<q-separator inset />
+
+						<q-card-section
+							class="text-center q-pa-xs items-center"
+							style="height: 50px"
+						>
+							<div></div>
+							<q-separator inset vertical />
+							<div></div>
+						</q-card-section>
 					</q-card>
 				</div>
 
