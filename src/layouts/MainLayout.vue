@@ -151,9 +151,8 @@ export default defineComponent({
 			isHomeOn: false,
 		};
 	},
-	emits: ["gohome"],
 
-	setup(props, { emit }) {
+	setup() {
 		const leftDrawerOpen = ref(false);
 		const section = ref("INZUKI");
 		const homeBtnOn = ref(false);
@@ -175,8 +174,6 @@ export default defineComponent({
 		const goHome = () => {
 			leftDrawerOpen.value = false;
 			section.value = "INZUKI";
-			// homeBtnOn.value = true;
-			emit("gohome");
 		};
 
 		return {
