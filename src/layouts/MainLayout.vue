@@ -153,7 +153,7 @@ export default defineComponent({
 	},
 	emits: ["gohome"],
 
-	setup() {
+	setup(props, { emit }) {
 		const leftDrawerOpen = ref(false);
 		const section = ref("INZUKI");
 		const homeBtnOn = ref(false);
@@ -172,12 +172,12 @@ export default defineComponent({
 			},
 		});
 
-		// const goHome = () => {
-		// 	leftDrawerOpen.value = false;
-		// 	section.value = "INZUKI";
-		// 	// homeBtnOn.value = true;
-		// 	this.$emit("gohome");
-		// };
+		const goHome = () => {
+			leftDrawerOpen.value = false;
+			section.value = "INZUKI";
+			// homeBtnOn.value = true;
+			emit("gohome");
+		};
 
 		return {
 			essentialLinks: linksList,
@@ -191,14 +191,12 @@ export default defineComponent({
 				leftDrawerOpen.value = !leftDrawerOpen.value;
 			},
 
-			// goHome,
-
-			goHome() {
-				leftDrawerOpen.value = false;
-				section.value = "INZUKI";
-				// homeBtnOn.value = true;
-				// this.$emit("gohome");
-			},
+			goHome,
+			// goHome() {
+			// 	leftDrawerOpen.value = false;
+			// 	section.value = "INZUKI";
+			// 	emit("gohome");
+			// },
 
 			setSection(val) {
 				section.value = val;

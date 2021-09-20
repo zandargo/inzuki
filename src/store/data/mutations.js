@@ -43,26 +43,13 @@ export function SET_LOG_INDEX(state, valIndex) {
 
 	let startDay = 20;
 	let tmpDate = new Date(fullStampIndex);
-	// let tmpDay = tmpDate.getDate() + startDay;
-	// let tmpMonth = tmp
-	// tmpDate.setDate(tmpDate.getDate() + 20);
-	tmpDate.setMonth(tmpDate.getMonth() - 1);
-	tmpDate.setDate(startDay);
 
-	// state.log.currentMonth = format(fullStampIndex, "MMMM", {
-	// 	locale: ptBR,
-	// }).toUpperCase();
-	// state.log.currentYear = format(fullStampIndex, "yyyy", { locale: ptBR });
+	tmpDate.getDate() > startDay
+		? tmpDate.setMonth(tmpDate.getMonth() + 1)
+		: false;
 
 	state.log.currentMonth = format(tmpDate, "MMMM", {
 		locale: ptBR,
 	}).toUpperCase();
-	state.log.currentYear =
-		format(tmpDate, "yyyy", { locale: ptBR }) +
-		" - " +
-		fullStampIndex +
-		" - " +
-		format(tmpDate, "dd/MM/yy", { locale: ptBR }) +
-		" - " +
-		format((state.app.idxDate0 + 1) * 86400000, "dd/MM/yy", { locale: ptBR });
+	state.log.currentYear = format(tmpDate, "yyyy", { locale: ptBR });
 }

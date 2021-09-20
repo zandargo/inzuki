@@ -70,6 +70,8 @@
 							separator
 							color="inzuki"
 							class="text-inzuki"
+							virtual-scroll-slice-ratio-before="4"
+							virtual-scroll-slice-ratio-after="4"
 						>
 							<template v-slot="{ item, index }">
 								<q-item
@@ -196,8 +198,8 @@ export default defineComponent({
 			setCurrentIndex,
 
 			onVirtualScroll({ index }) {
-				vlIndex.value = index;
-				setCurrentIndex(index);
+				vlIndex.value = index + 3;
+				setCurrentIndex(index + 3);
 			},
 
 			goToday,
