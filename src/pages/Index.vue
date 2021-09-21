@@ -6,41 +6,8 @@
 			<div class="column no-padding">
 				<div class="col-4 no-padding">
 					<q-card class="title-card q-ma-sm" bordered elevated>
-						<!-- <q-card-section class="text-center q-pa-xs">
-							<h6>{{ time.formattedDate }}</h6>
-						</q-card-section>
-						<q-separator inset />
-						<q-card-section class="text-center q-pa-xs">
-							<h4>
-								{{
-									checkSingleDigit(time.hours) +
-									":" +
-									checkSingleDigit(time.minutes) +
-									":" +
-									checkSingleDigit(time.seconds)
-								}}
-							</h4>
-						</q-card-section>
-						<q-separator inset /> -->
 						<q-card-section class="text-center q-pa-xs">
 							<h5>{{ log.currentMonth }} / {{ log.currentYear }}</h5>
-							<!-- <q-input
-								style="min-width: 2em"
-								type="number"
-								v-model.number="vlIndex"
-								:min="0"
-								:max="9999"
-								label="Scroll to index"
-								input-class="text-right"
-								outlined
-							/>
-							<q-btn
-								class="q-ml-sm"
-								label="Go"
-								no-caps
-								color="primary"
-								@click="executeScroll"
-							/> -->
 						</q-card-section>
 
 						<q-separator inset />
@@ -49,9 +16,35 @@
 							class="text-center q-pa-xs items-center"
 							style="height: 50px"
 						>
-							<div></div>
-							<q-separator inset vertical />
-							<div></div>
+							<q-card flat>
+								<q-card-section class="text-center text-h6"
+									>H.E.
+								</q-card-section>
+								<q-separator inset />
+								<q-card-section class="text-center text-h5">
+									0,0
+								</q-card-section>
+
+								<q-separator inset vertical />
+
+								<q-card-section class="text-center text-h6"
+									>H.N.
+								</q-card-section>
+								<q-separator inset />
+								<q-card-section class="text-center text-h5">
+									0,0
+								</q-card-section>
+
+								<q-separator inset vertical />
+
+								<q-card-section class="text-center text-h6"
+									>H.Ñ.R
+								</q-card-section>
+								<q-separator inset />
+								<q-card-section class="text-center text-h5">
+									0,0
+								</q-card-section>
+							</q-card>
 						</q-card-section>
 					</q-card>
 				</div>
