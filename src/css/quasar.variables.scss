@@ -36,16 +36,17 @@ $info: #31ccec;
 $warning: #f2c037;
 
 //* Esquema de cores original
-$bgToday: #ab47bc;
-$bgWorkDay: #fffde7;
-$bgFreeDay: #dcedc8;
-$bgHollyday: #b3e5fc;
+// $bgToday: #ab47bc;
+// $bgWorkDay: #fffde7;
+// $bgFreeDay: #dcedc8;
+// $bgHollyday: #b3e5fc;
 
 //* Esquema de cores 01
-// $bgToday: #607d8b;
-// $bgWorkDay: #fafafa;
-// $bgFreeDay: #cfd8dc;
-// $bgHollyday: #bbdefb;
+$bgToday: #0077b5;
+$bgWorkDay: #fafafa;
+// $bgFreeDay: #a5d6a7;
+$bgFreeDay: #c8e6c9;
+$bgHollyday: #bbdefb;
 
 // //* ------------------------------------------------------------------------ *//
 // //*                             QUASAR VARIABLES                             *//
@@ -231,7 +232,7 @@ $body2: (
 ) !default;
 $overline: (
 	size: 0.75rem,
-	line-height: 2rem,
+	line-height: 1.25rem,
 	letter-spacing: 0.16667em,
 	weight: 500,
 ) !default;

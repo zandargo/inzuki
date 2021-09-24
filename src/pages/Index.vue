@@ -66,135 +66,178 @@
 				</div>
 
 				<q-separator size="2px" />
-
+				<div class="col-auto column q-pa-xs">
+					<q-card
+						class="
+							no-margin
+							row
+							q-py-xs q-px-md
+							justify-between
+							bg-blue-grey-3
+						"
+						bordered
+						elevated
+					>
+						<div class="col-1 text-center text-h6">Dia</div>
+						<div class="col-3 text-center text-h6">Entrada</div>
+						<div class="col-3 text-center text-h6">Saída</div>
+						<div class="col-2 text-center text-h6">Extra</div>
+					</q-card>
+				</div>
 				<div class="col-8 items-stretch column q-pa-xs">
 					<!-- //* ------------------------------------------------------------------------ *// -->
 					<!-- //*                      CARD LISTA DE DIAS DE TRABALHO                      *// -->
 					<!-- //* ------------------------------------------------------------------------ *// -->
 					<q-card class="no-margin fit-parent" bordered elevated>
 						<!-- //* --------------------------- BARRA DE TÍTULOS --------------------------- *// -->
-						<q-card-section class="q-py-sm text-center"
+						<!-- <q-card-section class="q-py-sm text-center"
 							>TESTE...
 						</q-card-section>
-						<q-separator />
+						<q-separator /> -->
 						<!-- //* -------------------------- CALENDÁRIO DE DIAS -------------------------- *// -->
-						<q-card-section class="q-pa-none">
-							<q-virtual-scroll
-								ref="vlRef"
-								component="q-list"
-								style="max-height: 100%"
-								:items="worklog"
-								@virtual-scroll="onVirtualScroll"
-								@gohome="goToday"
-								separator
-								color="inzuki"
-								class="text-inzuki"
-								virtual-scroll-slice-ratio-before="4"
-								virtual-scroll-slice-ratio-after="4"
-							>
-								<template v-slot="{ item, index }">
-									<q-item
-										dense
-										:key="index"
-										:class="{
-											'is-workday': item.valWeekDay != 1,
-											'is-freeday': item.valWeekDay == 1,
-											'is-hollyday': false,
-											'is-today': index == time.todayIndex,
-										}"
-									>
-										<q-item-section
-											class="col-1 items-center text-h6"
+						<!-- <q-card-section class="q-pa-none"> -->
+						<!-- <div> -->
+						<q-virtual-scroll
+							ref="vlRef"
+							component="q-list"
+							style="max-height: 100%"
+							:items="worklog"
+							@virtual-scroll="onVirtualScroll"
+							@gohome="goToday"
+							separator
+							color="inzuki"
+							class="text-inzuki"
+						>
+							<template v-slot="{ item, index }">
+								<q-item
+									dense
+									:key="index"
+									:class="{
+										'is-workday': item.valWeekDay != 1,
+										'is-freeday': item.valWeekDay == 1,
+										'is-hollyday': false,
+										'is-today': index == time.todayIndex,
+									}"
+									class="row"
+								>
+									<q-item-section class="col-1 items-center text-h6">
+										<!-- DIA DA SEMANA -->
+										<q-item-label class="text-body1">
+											{{ item.strWeekDay }}
+										</q-item-label>
+										<!-- DIA DO MÊS -->
+										<q-item-label
+											class="text-h5 text-bold"
+											color="inzuki"
+											>{{ item.strDay }}</q-item-label
 										>
-											<!-- DIA DA SEMANA -->
-											<q-item-label class="text-body1">
-												{{ item.strWeekDay }}
-											</q-item-label>
-											<!-- DIA DO MÊS -->
-											<q-item-label
-												class="text-h5 text-bold"
-												color="inzuki"
-												>{{ item.strDay }}</q-item-label
-											>
-										</q-item-section>
+									</q-item-section>
 
-										<q-separator vertical spaced />
+									<q-separator vertical spaced />
 
-										<q-item-section class="">
-											<!-- LINHA ENTRADA -->
-											<q-item-label class="text-body q-px-none">
-												<div class="row justify-between">
-													<div class="col-3 text-h6">Entrada</div>
-													<div
-														class="col-grow text-body text-center"
-													>
-														<!-- {{ item.strDate }} -->
-														00:00
-													</div>
-													<div class="col-shrink">
-														<q-btn
-															round
-															padding="none"
-															flat
-															size="12px"
-															icon="add"
-														/>
-														<q-btn
-															round
-															padding="none"
-															flat
-															size="12px"
-															icon="remove"
-														/>
-													</div>
-												</div>
-											</q-item-label>
-											<q-separator />
+									<q-item-section class="">
+										<!-- LINHA ENTRADA -->
+										<q-item-label class="text-body q-px-none">
+											<div class="row justify-around">
+												<!-- <div class="col-3 text-h6">00:00</div> -->
+												<!-- {{ item.strDate }} -->
+												<!-- <div class="col-grow text-body text-center">
+													12:30
+												</div> -->
+												<q-btn
+													round
+													padding="none"
+													flat
+													size="12px"
+													icon="add"
+												/>
+												<div class="q-px-xs">00:00</div>
+												<q-btn
+													round
+													padding="none"
+													flat
+													size="12px"
+													icon="remove"
+												/>
+												<div class="col-grow"></div>
+												<q-btn
+													round
+													padding="none"
+													flat
+													size="12px"
+													icon="add"
+												/>
+												<div class="q-px-xs">12:30</div>
+												<q-btn
+													round
+													padding="none"
+													flat
+													size="12px"
+													icon="remove"
+												/>
+											</div>
+										</q-item-label>
+										<q-separator />
 
-											<!-- LINHA SAÍDA -->
-											<q-item-label class="">
-												<div class="row justify-between">
-													<div class="col-3 text-h6">Saída</div>
-													<div
-														class="col-grow text-body text-center"
-													>
-														00:00
-													</div>
-													<div class="col-shrink">
-														<q-btn
-															round
-															padding="none"
-															flat
-															size="12px"
-															icon="add"
-														/>
-														<q-btn
-															round
-															padding="none"
-															flat
-															size="12px"
-															icon="remove"
-														/>
-													</div>
-												</div>
-											</q-item-label>
-										</q-item-section>
+										<!-- LINHA SAÍDA -->
+										<q-item-label class="">
+											<div class="row justify-around">
+												<!-- <div class="col-3 text-h6">00:00</div> -->
+												<!-- {{ item.strDate }} -->
+												<!-- <div class="col-grow text-body text-center">
+													12:30
+												</div> -->
+												<q-btn
+													round
+													padding="none"
+													flat
+													size="12px"
+													icon="add"
+												/>
+												<div class="q-px-xs">13:30</div>
+												<q-btn
+													round
+													padding="none"
+													flat
+													size="12px"
+													icon="remove"
+												/>
+												<div class="col-grow"></div>
+												<q-btn
+													round
+													padding="none"
+													flat
+													size="12px"
+													icon="add"
+												/>
+												<div class="q-px-xs">00:00</div>
+												<q-btn
+													round
+													padding="none"
+													flat
+													size="12px"
+													icon="remove"
+												/>
+											</div>
+										</q-item-label>
+									</q-item-section>
 
-										<q-separator vertical spaced />
+									<q-separator vertical spaced />
 
-										<q-item-section class="col-3">
-											<q-item-label class="text-caption">
-												H.E. 0,0</q-item-label
-											>
-											<q-separator />
-											<q-item-label class="text-caption">
-												R$ 0,00
-											</q-item-label>
-										</q-item-section>
-									</q-item>
-								</template>
-							</q-virtual-scroll>
-						</q-card-section>
+									<q-item-section class="col-2">
+										<q-item-label class="text-caption">
+											H.E. 0,0</q-item-label
+										>
+										<q-separator />
+										<q-item-label class="text-caption">
+											R$ 0,00
+										</q-item-label>
+									</q-item-section>
+								</q-item>
+							</template>
+						</q-virtual-scroll>
+						<!-- </div> -->
+						<!-- </q-card-section> -->
 					</q-card>
 				</div>
 			</div>
