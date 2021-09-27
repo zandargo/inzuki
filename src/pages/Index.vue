@@ -66,7 +66,7 @@
 				</div>
 
 				<q-separator size="2px" />
-				<div class="col-auto column q-pa-xs">
+				<!-- <div class="col-auto column q-pa-xs">
 					<q-card
 						class="
 							no-margin
@@ -83,7 +83,7 @@
 						<div class="col-3 text-center text-h6">Saída</div>
 						<div class="col-2 text-center text-h6">Extra</div>
 					</q-card>
-				</div>
+				</div> -->
 				<div class="col-8 items-stretch column q-pa-xs">
 					<!-- //* ------------------------------------------------------------------------ *// -->
 					<!-- //*                      CARD LISTA DE DIAS DE TRABALHO                      *// -->
@@ -138,7 +138,7 @@
 									<q-item-section class="">
 										<!-- LINHA ENTRADA -->
 										<q-item-label class="text-body q-px-none">
-											<div class="row justify-around">
+											<div class="row justify-center">
 												<!-- <div class="col-3 text-h6">00:00</div> -->
 												<!-- {{ item.strDate }} -->
 												<!-- <div class="col-grow text-body text-center">
@@ -148,83 +148,42 @@
 													round
 													padding="none"
 													flat
-													size="12px"
+													size="md"
 													icon="add"
 												/>
-												<div class="q-px-xs">00:00</div>
+												<div class="q-px-md text-h5">00:00</div>
 												<q-btn
 													round
 													padding="none"
 													flat
-													size="12px"
+													size="md"
 													icon="remove"
 												/>
+												<!-- <div class="col-grow"></div>
+												<q-separator vertical />
 												<div class="col-grow"></div>
 												<q-btn
 													round
 													padding="none"
 													flat
-													size="12px"
+													size="md"
 													icon="add"
 												/>
-												<div class="q-px-xs">12:30</div>
+												<div class="q-px-none text-h5">00:00</div>
 												<q-btn
 													round
 													padding="none"
 													flat
-													size="12px"
+													size="md"
 													icon="remove"
-												/>
-											</div>
-										</q-item-label>
-										<q-separator />
-
-										<!-- LINHA SAÍDA -->
-										<q-item-label class="">
-											<div class="row justify-around">
-												<!-- <div class="col-3 text-h6">00:00</div> -->
-												<!-- {{ item.strDate }} -->
-												<!-- <div class="col-grow text-body text-center">
-													12:30
-												</div> -->
-												<q-btn
-													round
-													padding="none"
-													flat
-													size="12px"
-													icon="add"
-												/>
-												<div class="q-px-xs">13:30</div>
-												<q-btn
-													round
-													padding="none"
-													flat
-													size="12px"
-													icon="remove"
-												/>
-												<div class="col-grow"></div>
-												<q-btn
-													round
-													padding="none"
-													flat
-													size="12px"
-													icon="add"
-												/>
-												<div class="q-px-xs">00:00</div>
-												<q-btn
-													round
-													padding="none"
-													flat
-													size="12px"
-													icon="remove"
-												/>
+												/> -->
 											</div>
 										</q-item-label>
 									</q-item-section>
 
 									<q-separator vertical spaced />
 
-									<q-item-section class="col-2">
+									<q-item-section class="col-3">
 										<q-item-label class="text-caption">
 											H.E. 0,0</q-item-label
 										>
@@ -274,10 +233,10 @@ export default defineComponent({
 			},
 		});
 
-		const maxSize = 10000;
+		const maxSize = 2500;
 		const worklog = [];
 
-		let startDate = new Date(2015, 0, 1, 12, 0, 0, 0);
+		let startDate = new Date(2021, 0, 1, 12, 0, 0, 0);
 		let currentDate = new Date();
 		for (let i = 0; i < maxSize; i++) {
 			currentDate = startDate.valueOf() + i * 86400000;

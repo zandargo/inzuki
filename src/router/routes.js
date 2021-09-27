@@ -47,6 +47,14 @@ const routes = [
 				},
 			},
 			{
+				name: "PeriodSum",
+				path: "/periodsum",
+				component: () => import("pages/PeriodSum.vue"),
+				props: {
+					title: "Resumo",
+				},
+			},
+			{
 				name: "page1",
 				path: "/page1",
 				component: () => import("pages/Page1.vue"),

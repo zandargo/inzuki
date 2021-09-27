@@ -139,6 +139,12 @@ const linksList = [
 		icon: "attach_money",
 		route: "Finance1",
 	},
+	{
+		title: "Período",
+		caption: "Resumo do período selecionado",
+		icon: "insights",
+		route: "PeriodSum",
+	},
 ];
 
 import { defineComponent, ref, computed } from "vue";

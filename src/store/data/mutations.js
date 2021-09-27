@@ -41,12 +41,12 @@ export function SET_LOG_INDEX(state, valIndex) {
 
 	let fullStampIndex = stampIndex * 86400000;
 
-	let startDay = 20;
+	// let startDay = 20;
 	let tmpDate = new Date(fullStampIndex);
 
-	tmpDate.getDate() > startDay
-		? tmpDate.setMonth(tmpDate.getMonth() + 1)
-		: false;
+	// tmpDate.getDate() > startDay
+	// 	? tmpDate.setMonth(tmpDate.getMonth() + 1)
+	// 	: false;
 
 	state.log.currentMonth = format(tmpDate, "MMMM", {
 		locale: ptBR,
