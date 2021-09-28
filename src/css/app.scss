@@ -8,6 +8,13 @@
 	scrollbar-width: none; /* Firefox */
 	letter-spacing: normal;
 	line-height: 1.25em;
+
+	user-select: none;
+	-webkit-user-drag: none;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
 }
 
 h1,
