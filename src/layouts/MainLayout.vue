@@ -33,7 +33,7 @@
 					</div>
 				</q-toolbar-title>
 
-				<q-btn
+				<!-- <q-btn
 					flat
 					dense
 					round
@@ -41,7 +41,7 @@
 					icon="home"
 					class="disable"
 					v-if="section === 'INZUKI' && time.todayIndex == log.idxCurrent"
-				/>
+				/> -->
 				<q-btn
 					v-model="homeBtnOn"
 					flat
@@ -52,8 +52,8 @@
 					aria-label="Home"
 					@click="goHome"
 					:to="{ name: 'home' }"
-					v-if="section !== 'INZUKI' || time.todayIndex != log.idxCurrent"
 				/>
+				<!-- v-if="section !== 'INZUKI' || time.todayIndex != log.idxCurrent" -->
 			</q-toolbar>
 		</q-header>
 
