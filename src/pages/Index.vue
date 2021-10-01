@@ -299,6 +299,18 @@ export default defineComponent({
 //> 		: { 'background-color': '#F1F8E9' },
 //> 	true ? {} : {},
 //> ]"
+
+//! Adicionar entrada
+//> 	Vue filters ?
+//> 	Criar método adic/modificar valor
+//> 	Criar um push no array de registros
+//! Questões
+//> 	Gerar lista completa no Vuex? -> Puxar a lista no Index?
+//> 	Apagar entradas?
+//> 	Criar método para apagar e passar o item do v-for para poder puxar a chave
+//> 	findIndex
+//>	classe slow/slower para reduzir animações
+//! Importante: criar sistemática de ter array apenas com os dias preenchidos, para reduzir acessos ao firebase
 </script>
 
 <style lang="scss" scoped>
