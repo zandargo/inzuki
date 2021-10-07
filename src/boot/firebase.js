@@ -15,15 +15,16 @@ const firebaseConfig = {
 	measurementId: "G-6FB6R23423",
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+//_ // Get a list of cities from your database
+//_ async function getCities(db) {
+//_ 	const citiesCol = collection(db, "cities");
+//_ 	const citySnapshot = await getDocs(citiesCol);
+//_ 	const cityList = citySnapshot.docs.map((doc) => doc.data());
+//_ 	return cityList;
+//_ }
 
-// Get a list of cities from your database
-async function getCities(db) {
-	const citiesCol = collection(db, "cities");
-	const citySnapshot = await getDocs(citiesCol);
-	const cityList = citySnapshot.docs.map((doc) => doc.data());
-	return cityList;
-}
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
 
 export default db;
