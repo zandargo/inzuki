@@ -120,7 +120,14 @@ export default {
 					// Signed in
 					const user = userCredential.user;
 					// ...
-					// $q.notify({ message: "Sign In Success." });
+					$q.notify({
+						type: "positive",
+						message: "Sign In Success.",
+						position: "center",
+						// color: "primary",
+						textColor: "white",
+						classes: ["loginok"],
+					});
 					router.push("/home");
 				})
 				.catch((error) => {
@@ -209,4 +216,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.loginok {
+	font-size: 2.5rem !important;
+}
+</style>
