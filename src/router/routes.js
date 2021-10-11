@@ -8,7 +8,7 @@ const routes = [
 				name: "index",
 				path: "/",
 				component: () => import("pages/Index.vue"),
-				props: {
+				meta: {
 					title: "INZUKI",
 				},
 			},
@@ -21,7 +21,7 @@ const routes = [
 				name: "auth",
 				path: "/auth",
 				component: () => import("pages/Auth.vue"),
-				props: {
+				meta: {
 					title: "Login de Usuário",
 				},
 			},
@@ -29,7 +29,7 @@ const routes = [
 				name: "home",
 				path: "/home",
 				component: () => import("pages/Index.vue"),
-				props: {
+				meta: {
 					title: "INZUKI",
 				},
 			},
@@ -42,7 +42,7 @@ const routes = [
 				name: "Finance1",
 				path: "/finance1",
 				component: () => import("pages/Finance101.vue"),
-				props: {
+				meta: {
 					title: "Setup",
 				},
 			},
@@ -50,7 +50,7 @@ const routes = [
 				name: "PeriodSum",
 				path: "/periodsum",
 				component: () => import("pages/PeriodSum.vue"),
-				props: {
+				meta: {
 					title: "Resumo",
 				},
 			},
@@ -58,7 +58,7 @@ const routes = [
 				name: "page1",
 				path: "/page1",
 				component: () => import("pages/Page1.vue"),
-				props: {
+				meta: {
 					title: "Página 1",
 				},
 			},
@@ -66,7 +66,7 @@ const routes = [
 				name: "page2",
 				path: "/page2",
 				component: () => import("pages/Page2.vue"),
-				props: {
+				meta: {
 					title: "Página 2",
 				},
 			},
@@ -74,7 +74,7 @@ const routes = [
 				name: "page3",
 				path: "/page3",
 				component: () => import("pages/Page3.vue"),
-				props: {
+				meta: {
 					title: "Página 3",
 				},
 			},
@@ -82,7 +82,7 @@ const routes = [
 				name: "splscr",
 				path: "/splscr",
 				component: () => import("pages/Splash01.vue"),
-				props: {
+				meta: {
 					title: "",
 				},
 			},
@@ -93,7 +93,7 @@ const routes = [
 		name: "SplashScreen",
 		path: "/SplashScreen",
 		component: () => import("pages/Splash01.vue"),
-		props: {
+		meta: {
 			title: "",
 		},
 	},
