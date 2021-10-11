@@ -1,10 +1,10 @@
 <template>
 	<div>
 		<template v-if="tab === 'register'">
-			<div class="text-center q-mb-lg">Sign up with</div>
+			<div class="text-center q-mb-lg">Registrar com</div>
 		</template>
 		<template v-else>
-			<div class="text-center q-mb-lg">Sign in with</div>
+			<div class="text-center q-mb-lg">Entrar com</div>
 		</template>
 		<div class="flex flex-center">
 			<q-btn
@@ -16,10 +16,10 @@
 			/>
 		</div>
 		<template v-if="tab === 'register'">
-			<p class="text-center">Sign up with credentials</p>
+			<p class="text-center">Registrar com credenciais</p>
 		</template>
 		<template v-else>
-			<p class="text-center">Sign in with credentials</p>
+			<p class="text-center">Entrar com credenciais</p>
 		</template>
 
 		<q-form @submit="submitForm">
@@ -28,18 +28,18 @@
 				outlined
 				class="q-mb-md"
 				type="email"
-				label="Email"
+				label="E-mail"
 			/>
 			<q-input
 				v-model="formData.password"
 				outlined
 				class="q-mb-md"
 				type="password"
-				label="Password"
+				label="Senha"
 			/>
 			<div class="row">
 				<q-space />
-				<q-btn type="submit" color="primary" :label="tab" />
+				<q-btn type="submit" color="primary" :label="tabLabel" />
 			</div>
 		</q-form>
 		<div class="text-center q-my-md">
@@ -47,8 +47,8 @@
 				v-if="tab !== 'register'"
 				flat
 				@click="forgotPassword"
-				label="Forgot Password?"
-				color="green"
+				label="Esqueci minha senha"
+				color="red"
 				class="text-capitalize rounded-borders"
 			/>
 		</div>
@@ -71,11 +71,12 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	GoogleAuthProvider,
+	signInWithPopup,
 } from "firebase/auth";
 
 export default {
 	name: "AuthComponent",
-	props: ["tab"],
+	props: ["tab", "tabLabel"],
 	components: { ForgotPassword },
 	data() {
 		return {
@@ -150,6 +151,29 @@ export default {
 					const errorMessage = error.message;
 				});
 		};
+		//* -------------------------- SIGN IN WITH GOOGLE ------------------------- *//
+		const google = () => {
+			signInWithPopup(auth, provider)
+				.then((result) => {
+					// This gives you a Google Access Token. You can use it to access the Google API.
+					const credential =
+						GoogleAuthProvider.credentialFromResult(result);
+					const token = credential.accessToken;
+					// The signed-in user info.
+					const user = result.user;
+					// ...
+				})
+				.catch((error) => {
+					// Handle Errors here.
+					const errorCode = error.code;
+					const errorMessage = error.message;
+					// The email of the user's account used.
+					const email = error.email;
+					// The AuthCredential type that was used.
+					const credential = GoogleAuthProvider.credentialFromError(error);
+					// ...
+				});
+		};
 
 		return {
 			formData,
@@ -157,6 +181,7 @@ export default {
 			submitForm,
 			createUser,
 			signInExistingUser,
+			google,
 		};
 	},
 
@@ -171,18 +196,18 @@ export default {
 		// 		this.createUser(this.formData.email, this.formData.password);
 		// 	}
 		// },
-		google() {
-			// const provider = new firebase.auth.GoogleAuthProvider();
-			// firebase
-			// 	.auth()
-			// 	.signInWithPopup(provider)
-			// 	.then((result) => {
-			// 		console.log("result", result);
-			// 		this.$q.notify({ message: "Sign In Success." });
-			// 		this.$router.push("/home");
-			// 	})
-			// 	.catch((error) => console.log("error", error));
-		},
+		// google() {
+		// 	const provider = new firebase.auth.GoogleAuthProvider();
+		// 	firebase
+		// 		.auth()
+		// 		.signInWithPopup(provider)
+		// 		.then((result) => {
+		// 			console.log("result", result);
+		// 			this.$q.notify({ message: "Sign In Success." });
+		// 			this.$router.push("/home");
+		// 		})
+		// 		.catch((error) => console.log("error", error));
+		// },
 		// signInExistingUser(email, password) {
 		// 	console.log(email, password);
 		// 	firebase

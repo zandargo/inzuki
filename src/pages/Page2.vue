@@ -23,7 +23,26 @@
 					</q-card>
 				</div>
 				<div class="col">
-					<q-btn rounded color="primary" label="Clique aqui" />
+					<q-btn
+						rounded
+						color="primary"
+						class="full-width q-ma-sm"
+						label="Clique aqui"
+					/>
+					<q-btn
+						rounded
+						color="primary"
+						class="full-width q-ma-sm"
+						label="Write Firestore"
+						@click="writeToFirestore"
+					/>
+					<q-btn
+						rounded
+						color="primary"
+						class="full-width q-ma-sm"
+						label="Read Firestore"
+						@click="readDocs"
+					/>
 				</div>
 				<div class="col">
 					<q-btn-group rounded dense>
@@ -37,9 +56,48 @@
 </template>
 
 <script>
+import db from "src/boot/firebase";
+// import { doc, setDoc, getDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+
 export default {
 	name: "page1",
+	setup() {
+		const writeToFirestore = async () => {
+			// const ref = doc(db, "testCollection", "testDoc");
+			// const document = {
+			// 	text: "Firebase 9 rocks!",
+			// };
+			// try {
+			// 	await setDoc(ref, document);
+			// 	alert("Success!");
+			// } catch (e) {
+			// 	alert("Error!");
+			// 	console.error(e);
+			// }
+
+			try {
+				const docRef = await addDoc(collection(db, "users"), {
+					first: "Ada",
+					last: "Lovelace",
+					born: 1815,
+				});
+				console.log("Document written with ID: ", docRef.id);
+			} catch (e) {
+				console.error("Error adding document: ", e);
+			}
+		};
+
+		const readDocs = async () => {
+			const querySnapshot = await getDocs(collection(db, "users"));
+			querySnapshot.forEach((doc) => {
+				console.log(`${doc.id} => ${doc.data()}`);
+			});
+		};
+
+		return { writeToFirestore, readDocs };
+	},
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>
