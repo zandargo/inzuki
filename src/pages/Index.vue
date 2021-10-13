@@ -311,6 +311,11 @@ export default defineComponent({
 //> 	findIndex
 //>	classe slow/slower para reduzir animações
 //! Importante: criar sistemática de ter array apenas com os dias preenchidos, para reduzir acessos ao firebase
+
+//>	Documento no vídeo-exemplo (blog posts)
+//>	blogCoverPhoto, blogCoverPhotoName, blogHTML, blogID, blogTitle, date, profileID
+//>	2:52:00 -> pega o retorno do createUser e guarda a ID
+//>
 </script>
 
 <style lang="scss" scoped>

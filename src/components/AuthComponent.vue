@@ -24,6 +24,13 @@
 
 		<q-form @submit="submitForm">
 			<q-input
+				v-if="tab === 'register'"
+				v-model="formData.name"
+				outlined
+				class="q-mb-md"
+				label="Nome"
+			/>
+			<q-input
 				v-model="formData.email"
 				outlined
 				class="q-mb-md"
@@ -90,6 +97,7 @@ export default {
 	setup(props) {
 		//* ------------------------------ DATA VALUES ----------------------------- *//
 		const formData = ref({
+			name: "",
 			email: "",
 			password: "",
 		});
