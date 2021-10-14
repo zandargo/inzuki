@@ -166,7 +166,25 @@ export default {
 				})
 				.catch((error) => {
 					const errorCode = error.code;
-					const errorMessage = error.message;
+					let errorMessage = error.message;
+					switch (errorCode) {
+						//_ case "auth/email-already-exists":
+						//_ 	errorMessage = "Usuário já cadastrado"
+						//_ 	break;
+						case "auth/user-not-found":
+							errorMessage = "E-mail não cadastrado";
+							break;
+
+						default:
+							errorMessage = error.message;
+							break;
+					}
+					$q.notify({
+						type: "negative",
+						message: errorMessage,
+						position: "center",
+						textColor: "white",
+					});
 				});
 		};
 		//* -------------------------- SIGN IN WITH GOOGLE ------------------------- *//
