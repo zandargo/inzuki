@@ -80,6 +80,9 @@ import {
 	GoogleAuthProvider,
 	signInWithPopup,
 } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
+
+import db from "boot/firebase";
 
 export default {
 	name: "AuthComponent",
@@ -128,6 +131,13 @@ export default {
 				.then((userCredential) => {
 					// Signed in
 					const user = userCredential.user;
+					const database = doc(db, "users", user.uid);
+					setDoc(database, {
+						userName: formData.value.name,
+						email: formData.value.email,
+					});
+					const userLogs = doc(db, "users", user.uid, "logs");
+
 					// ...
 					$q.notify({
 						type: "positive",
@@ -135,7 +145,7 @@ export default {
 						position: "center",
 						// color: "primary",
 						textColor: "white",
-						classes: ["loginok"],
+						// classes: ["loginok"],
 					});
 					router.push("/home");
 				})
@@ -147,7 +157,7 @@ export default {
 		};
 
 		//* ------------------- SIGN IN WITH E-MAIL AND PASSWORD ------------------- *//
-		const signInExistingUser = (email, password) => {
+		const signInExistingUser = async (email, password) => {
 			signInWithEmailAndPassword(auth, email, password)
 				.then((userCredential) => {
 					// Signed in

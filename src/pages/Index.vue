@@ -316,6 +316,9 @@ export default defineComponent({
 //>	blogCoverPhoto, blogCoverPhotoName, blogHTML, blogID, blogTitle, date, profileID
 //>	2:52:00 -> pega o retorno do createUser e guarda a ID
 //>
+//>	docRef.add(newDocument)
+//>	.addOnSuccessListener({})  e logo em seguida o código do q fazer qnd terminar o write
+//>
 </script>
 
 <style lang="scss" scoped>

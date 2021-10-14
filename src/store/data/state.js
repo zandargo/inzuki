@@ -6,6 +6,8 @@ export default function () {
 		app: {
 			section: "",
 			idxDate0: idx0,
+			userID: "",
+			// logsID: "",
 		},
 		log: {
 			currentIndex: 0,

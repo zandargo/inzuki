@@ -1,9 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-// Follow this pattern to import other Firebase services
-// import { } from 'firebase/<service>';
-import {} from "firebase/firestore";
-import {} from "firebase/auth";
+import { enableIndexedDbPersistence } from "firebase/firestore";
+// import {} from "firebase/auth";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyCeb0rJRxG3o-TOcFAdr_9o5uffrLQXeis",
@@ -15,16 +13,18 @@ const firebaseConfig = {
 	measurementId: "G-6FB6R23423",
 };
 
-//_ // Get a list of cities from your database
-//_ async function getCities(db) {
-//_ 	const citiesCol = collection(db, "cities");
-//_ 	const citySnapshot = await getDocs(citiesCol);
-//_ 	const cityList = citySnapshot.docs.map((doc) => doc.data());
-//_ 	return cityList;
-//_ }
-
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+
+enableIndexedDbPersistence(db).catch((err) => {
+	if (err.code == "failed-precondition") {
+		// Multiple tabs open, persistence can only be enabled in one tab at a a time.
+	} else if (err.code == "unimplemented") {
+		// The current browser does not support all of the features required to enable persistence
+	}
+}); // Subsequent queries will use persistence, if it was enabled successfully
+
+// [ ] Verificar se tem usuário logado e jogar no Vuex
 
 export default db;

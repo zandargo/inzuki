@@ -17,6 +17,7 @@ function joinDate(time, opt, sep) {
 	return opt.map(format).join(sep);
 }
 
+//* ---------------------------- SET CURRENT TIME ---------------------------- */
 export function SET_TIME(state) {
 	let date = new Date();
 	// state.time.stamp = Date.now();	//!Slow down devtools
@@ -34,6 +35,7 @@ export function SET_TIME(state) {
 	state.time.todayIndex = todayIndex - state.app.idxDate0;
 }
 
+//* ------------------------------ SET LOG INDEX ----------------------------- */
 export function SET_LOG_INDEX(state, valIndex) {
 	state.log.currentIndex = valIndex.value;
 	let stampIndex = valIndex.value + state.app.idxDate0;
@@ -52,4 +54,9 @@ export function SET_LOG_INDEX(state, valIndex) {
 		locale: ptBR,
 	}).toUpperCase();
 	state.log.currentYear = format(tmpDate, "yyyy", { locale: ptBR });
+}
+
+//* -------------------------- SET FIREBASE USER ID -------------------------- */
+export function SET_USERID(state, id) {
+	state.app.userID = id.value;
 }
