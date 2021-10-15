@@ -13,6 +13,7 @@
 			height-hint="98"
 		>
 			<q-toolbar class="">
+				<!-- //* ----------------------------- DRAWER BUTTON ---------------------------- *// -->
 				<q-btn
 					flat
 					dense
@@ -24,6 +25,7 @@
 					@click="toggleLeftDrawer"
 				/>
 
+				<!-- //* ----------------------------- WINDOW TITLE ----------------------------- *// -->
 				<q-toolbar-title class="text-center q-mt-none">
 					<div v-if="section === 'INZUKI'" class="text-h3 txt-spaced-1">
 						INZUKI
@@ -42,6 +44,7 @@
 					class="disable"
 					v-if="section === 'INZUKI' && time.todayIndex == log.idxCurrent"
 				/> -->
+				<!-- //* ------------------------------ HOME BUTTON ----------------------------- *// -->
 				<q-btn
 					v-model="homeBtnOn"
 					flat
@@ -51,8 +54,8 @@
 					icon="home"
 					aria-label="Home"
 					@click="goHome"
-					:to="{ name: 'home' }"
 				/>
+				<!-- :to="{ name: 'home' }" -->
 				<!-- v-if="section !== 'INZUKI' || time.todayIndex != log.idxCurrent" -->
 			</q-toolbar>
 		</q-header>
@@ -149,6 +152,7 @@ const linksList = [
 
 import { defineComponent, ref, computed } from "vue";
 import { useStore } from "vuex";
+import { useRouter, useRoute } from "vue-router";
 
 export default defineComponent({
 	name: "MainLayout",
@@ -162,13 +166,14 @@ export default defineComponent({
 			isHomeOn: false,
 		};
 	},
-
 	setup() {
 		const leftDrawerOpen = ref(false);
 		const section = ref("INZUKI");
 		const homeBtnOn = ref(false);
 
 		const $store = useStore();
+		const router = useRouter();
+
 		const time = computed({
 			get: () => $store.state.zData.time,
 			set: () => {
@@ -185,6 +190,7 @@ export default defineComponent({
 		const goHome = () => {
 			leftDrawerOpen.value = false;
 			section.value = "INZUKI";
+			router.push("/home");
 		};
 
 		return {

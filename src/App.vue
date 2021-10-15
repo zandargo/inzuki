@@ -14,24 +14,14 @@ import {
 export default defineComponent({
 	name: "App",
 	data() {
-		return {
-			// year: 0,
-			// month: 0,
-			// day: 0,
-			// hours: 0,
-			// minutes: 0,
-			// seconds: 0,
-			// formattedDate: "",
-		};
+		return {};
 	},
 	setup() {
 		const $store = useStore();
 		const time = computed({
 			get: () => $store.state.zData.time,
 			set: () => {
-				// setInterval(() => {
 				$store.commit("zData/SET_TIME", {}); //! ALTERADO
-				// }, 1000);
 			},
 		});
 
@@ -39,24 +29,12 @@ export default defineComponent({
 	},
 	methods: {
 		...mapMutations("zData", ["SET_TIME"]),
-		// setTime() {
-		// 	setInterval(() => {
-		// 		// const $store = useStore();
-		// 		// $store.commit("zData/SET_TIME", {});
-		// 		// this.time.set;
-		// 		this.SET_TIME();
-		// 	}, 1000);
-		// },
 	},
-	mounted() {
-		// this.setTime();
-	},
+	mounted() {},
 	created() {
 		this.interval = setInterval(this.SET_TIME, 1000);
-		// this.SET_TIME;
 	},
 	beforeUnmount() {
-		//_ clearInterval(this.setTime());
 		clearInterval(this.interval);
 	},
 });

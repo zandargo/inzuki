@@ -71,6 +71,7 @@
 
 import { useQuasar } from "quasar";
 import { ref } from "vue";
+import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import ForgotPassword from "components/ForgotPassword.vue";
 import {
@@ -105,6 +106,7 @@ export default {
 			password: "",
 		});
 		const $q = useQuasar();
+		const $store = useStore();
 		const router = useRouter();
 		const route = useRoute();
 		const resetPwdDialog = ref(false);
@@ -124,68 +126,67 @@ export default {
 			}
 		};
 
+		//* ------------------------------- SIGNED IN ------------------------------ *//
+		const signedIn = (userCredential, isNew) => {
+			const user = userCredential.user;
+			const userID = user.uid;
+			console.log(user);
+			if (isNew) {
+				const database = doc(db, "users", userID);
+				setDoc(database, {
+					userName: formData.value.name,
+					email: formData.value.email,
+				});
+			}
+			$q.notify({
+				type: "positive",
+				message: "Sign In Success.",
+				position: "center",
+				// color: "primary",
+				textColor: "white",
+				// classes: ["loginok"],
+			});
+			$store.commit("zData/SET_USERID", userID);
+			router.push("/home");
+		};
+
+		//* ------------------------------- SIGN FAIL ------------------------------ *//
+		const signedFail = (error) => {
+			const errorCode = error.code;
+			let errorMessage = error.message;
+			switch (errorCode) {
+				//_ case "auth/email-already-exists":
+				//_ 	errorMessage = "Usuário já cadastrado"
+				//_ 	break;
+				case "auth/user-not-found":
+					errorMessage = "E-mail não cadastrado";
+					break;
+
+				default:
+					errorMessage = error.message;
+					break;
+			}
+			$q.notify({
+				type: "negative",
+				message: errorMessage,
+				position: "center",
+				textColor: "white",
+			});
+		};
+
 		//* ---------------------------- CREATE NEW USER --------------------------- *//
 		const createUser = (email, password) => {
 			console.log(email, password);
 			createUserWithEmailAndPassword(auth, email, password)
-				.then((userCredential) => {
-					// Signed in
-					const user = userCredential.user;
-					const database = doc(db, "users", user.uid);
-					setDoc(database, {
-						userName: formData.value.name,
-						email: formData.value.email,
-					});
-					const userLogs = doc(db, "users", user.uid, "logs");
-
-					// ...
-					$q.notify({
-						type: "positive",
-						message: "Sign In Success.",
-						position: "center",
-						// color: "primary",
-						textColor: "white",
-						// classes: ["loginok"],
-					});
-					router.push("/home");
-				})
-				.catch((error) => {
-					const errorCode = error.code;
-					const errorMessage = error.message;
-					// ..
-				});
+				.then((userCredential) => signedIn(userCredential, true))
+				.catch((error) => signedFail(error));
 		};
 
 		//* ------------------- SIGN IN WITH E-MAIL AND PASSWORD ------------------- *//
 		const signInExistingUser = async (email, password) => {
 			signInWithEmailAndPassword(auth, email, password)
-				.then((userCredential) => {
-					// Signed in
-					const user = userCredential.user;
-					// ...
-				})
-				.catch((error) => {
-					const errorCode = error.code;
-					let errorMessage = error.message;
-					switch (errorCode) {
-						//_ case "auth/email-already-exists":
-						//_ 	errorMessage = "Usuário já cadastrado"
-						//_ 	break;
-						case "auth/user-not-found":
-							errorMessage = "E-mail não cadastrado";
-							break;
-
-						default:
-							errorMessage = error.message;
-							break;
-					}
-					$q.notify({
-						type: "negative",
-						message: errorMessage,
-						position: "center",
-						textColor: "white",
-					});
-				});
+				.then((userCredential) => signedIn(userCredential, false))
+				.catch((error) => signedFail(error));
 		};
 		//* -------------------------- SIGN IN WITH GOOGLE ------------------------- *//
 		const google = () => {
@@ -197,7 +198,7 @@ export default {
 					const token = credential.accessToken;
 					// The signed-in user info.
 					const user = result.user;
-					// ...
+					signedIn(user);
 				})
 				.catch((error) => {
 					// Handle Errors here.
@@ -215,6 +216,7 @@ export default {
 			formData,
 			resetPwdDialog,
 			submitForm,
+			signedIn,
 			createUser,
 			signInExistingUser,
 			google,
