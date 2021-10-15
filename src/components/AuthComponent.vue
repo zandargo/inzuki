@@ -138,6 +138,8 @@ export default {
 					email: formData.value.email,
 				});
 			}
+			// [ ] Buscar informações do usuário no doc e jogar no Vuex / Profile
+
 			$q.notify({
 				type: "positive",
 				message: "Sign In Success.",

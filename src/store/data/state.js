@@ -7,6 +7,8 @@ export default function () {
 			section: "",
 			idxDate0: idx0,
 			userID: "",
+			userName: "",
+			userEmail: "",
 			// logsID: "",
 		},
 		log: {
