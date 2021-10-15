@@ -53,9 +53,3 @@ export default defineComponent({
 	letter-spacing: 0.08em;
 }
 </style>
-
-//* NOTAS //* O cálculo da meta depende de uma definição da carga semanal de
-h.e. //* No doc de log diário, deve haver uma var indicando se o valor (bruto) é
-manual ou editado //* Chaves do log diário: type, valHrs, valBrt, valLiq //* ID
-do log diário: timestamp do dia + "-00" -> Escalonar para versão onde pode haver
-mais de uma entrada de log diário
