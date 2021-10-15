@@ -59,7 +59,7 @@
 				<!-- v-if="section !== 'INZUKI' || time.todayIndex != log.idxCurrent" -->
 			</q-toolbar>
 		</q-header>
-
+		<!-- //* ---------------------------- NAVIGATION MENU --------------------------- *// -->
 		<q-drawer
 			v-model="leftDrawerOpen"
 			overlay
@@ -68,7 +68,24 @@
 			behavior="mobile"
 		>
 			<q-list>
+				<!-- //* Spacer -->
 				<div class="q-mt-xl q-py-sm"></div>
+				<!-- //* Loged in card -->
+				<q-item>
+					<q-item-section avatar>
+						<q-avatar>
+							<img src="https://cdn.quasar.dev/img/boy-avatar.png" />
+						</q-avatar>
+					</q-item-section>
+
+					<q-item-section>
+						<q-item-label>Title</q-item-label>
+						<q-item-label caption> Subhead </q-item-label>
+					</q-item-section>
+				</q-item>
+
+				<q-separator />
+				<!-- //* Navlinks -->
 				<EssentialLink
 					v-for="link in essentialLinks"
 					:key="link.title"
@@ -176,15 +193,15 @@ export default defineComponent({
 
 		const time = computed({
 			get: () => $store.state.zData.time,
-			set: () => {
-				$store.commit("zData/SetTime", {}); //! Ativo ???
-			},
+			set: () => $store.commit("zData/SetTime", {}), //! Ativo ???
 		});
 		const log = computed({
 			get: () => $store.state.zData.log,
-			set: () => {
-				$store.commit("zData/SET_LOG_INDEX", { value });
-			},
+			set: () => $store.commit("zData/SET_LOG_INDEX", { value }),
+		});
+		const userID = computed({
+			get: () => $store.state.zData.app.userID,
+			set: () => $store.commit("zData/SET_USERID", userID),
 		});
 
 		const goHome = () => {
