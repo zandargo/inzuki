@@ -71,7 +71,7 @@
 				<!-- //* Spacer -->
 				<div class="q-mt-xl q-py-sm"></div>
 				<!-- //* Loged in card -->
-				<q-item v-if="userID.length > 1">
+				<q-item v-if="userID !== ''">
 					<q-item-section avatar>
 						<q-avatar
 							dense
@@ -91,6 +91,12 @@
 
 				<q-separator />
 				<!-- //* Navlinks -->
+				<EssentialLink
+					v-if="userID === ''"
+					:key="loginLink.title"
+					v-bind="loginLink"
+					@click="setSection(loginLink.title)"
+				/>
 				<EssentialLink
 					v-for="link in essentialLinks"
 					:key="link.title"
@@ -128,12 +134,6 @@
 import EssentialLink from "components/EssentialLink.vue";
 
 const linksList = [
-	{
-		title: "LOGIN/REGISTER",
-		caption: "Logar no Inzuki database (a ser atualizado)",
-		icon: "vpn_key",
-		route: "auth",
-	},
 	{
 		title: "HEADINGS",
 		caption: "Template dos formatos de letra",
@@ -204,6 +204,7 @@ export default defineComponent({
 			get: () => $store.state.zData.log,
 			set: () => $store.commit("zData/SET_LOG_INDEX", { value }),
 		});
+		//* ------------------------------- USER INFO ------------------------------ *//
 		const userID = computed({
 			get: () => $store.state.zData.app.userID,
 			set: () => $store.commit("zData/SET_USERID", userID),
@@ -216,7 +217,7 @@ export default defineComponent({
 			get: () => $store.state.zData.app.userEmail,
 			set: () => {},
 		});
-
+		//* ---------------------------- GOHOME FUNCTION --------------------------- *//
 		const goHome = () => {
 			leftDrawerOpen.value = false;
 			section.value = "INZUKI";
@@ -225,6 +226,12 @@ export default defineComponent({
 
 		return {
 			essentialLinks: linksList,
+			loginLink: {
+				title: "LOGIN/REGISTER",
+				caption: "Logar no Inzuki database (a ser atualizado)",
+				icon: "vpn_key",
+				route: "auth",
+			},
 			leftDrawerOpen,
 			section,
 			homeBtnOn,
