@@ -81,7 +81,7 @@ import {
 	GoogleAuthProvider,
 	signInWithPopup,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import db from "boot/firebase";
 
@@ -115,22 +115,20 @@ export default {
 
 		//* ------------------------------ SUBMIT FORM ----------------------------- *//
 		const submitForm = () => {
-			console.log("submitForm", props.tab);
-			console.log("formData.value.email", formData.value.email);
-			console.log("formData.value.password", formData.value.password);
+			//_console.log("submitForm", props.tab);
+			//_console.log("formData.value.email", formData.value.email);
+			//_console.log("formData.value.password", formData.value.password);
 			if (props.tab === "login") {
 				signInExistingUser(formData.value.email, formData.value.password);
 			} else {
-				console.log("Teste");
 				createUser(formData.value.email, formData.value.password);
 			}
 		};
 
 		//* ------------------------------- SIGNED IN ------------------------------ *//
-		const signedIn = (userCredential, isNew) => {
+		const signedIn = async (userCredential, isNew) => {
 			const user = userCredential.user;
 			const userID = user.uid;
-			console.log(user);
 			if (isNew) {
 				const database = doc(db, "users", userID);
 				setDoc(database, {
@@ -138,8 +136,13 @@ export default {
 					email: formData.value.email,
 				});
 			}
-			// [ ] Buscar informações do usuário no doc e jogar no Vuex / Profile
-
+			//> [x] Buscar informações do usuário no doc e jogar no Vuex / Profile
+			const userRef = doc(db, "users", userID);
+			const userSnap = await getDoc(userRef);
+			const userInfo = userSnap.data();
+			$store.commit("zData/SET_USERID", userID);
+			$store.commit("zData/SET_USERINFO", userInfo);
+			router.push("/home");
 			$q.notify({
 				type: "positive",
 				message: "Sign In Success.",
@@ -148,8 +151,6 @@ export default {
 				textColor: "white",
 				// classes: ["loginok"],
 			});
-			$store.commit("zData/SET_USERID", userID);
-			router.push("/home");
 		};
 
 		//* ------------------------------- SIGN FAIL ------------------------------ *//
@@ -157,9 +158,9 @@ export default {
 			const errorCode = error.code;
 			let errorMessage = error.message;
 			switch (errorCode) {
-				//_ case "auth/email-already-exists":
-				//_ 	errorMessage = "Usuário já cadastrado"
-				//_ 	break;
+				case "auth/email-already-exists":
+					errorMessage = "Usuário já cadastrado";
+					break;
 				case "auth/user-not-found":
 					errorMessage = "E-mail não cadastrado";
 					break;
@@ -178,7 +179,7 @@ export default {
 
 		//* ---------------------------- CREATE NEW USER --------------------------- *//
 		const createUser = (email, password) => {
-			console.log(email, password);
+			//_console.log(email, password);
 			createUserWithEmailAndPassword(auth, email, password)
 				.then((userCredential) => signedIn(userCredential, true))
 				.catch((error) => signedFail(error));
@@ -200,7 +201,8 @@ export default {
 					const token = credential.accessToken;
 					// The signed-in user info.
 					const user = result.user;
-					signedIn(user);
+
+					signedIn(user, true);
 				})
 				.catch((error) => {
 					// Handle Errors here.

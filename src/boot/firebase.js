@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { enableIndexedDbPersistence } from "firebase/firestore";
+import { initializeFirestore, CACHE_SIZE_UNLIMITED } from "firebase/firestore";
 // import {} from "firebase/auth";
 
 const firebaseConfig = {
@@ -26,5 +27,9 @@ enableIndexedDbPersistence(db).catch((err) => {
 }); // Subsequent queries will use persistence, if it was enabled successfully
 
 // [ ] Verificar se tem usuário logado e jogar no Vuex
+
+//> const firestoreDb = initializeFirestore(app, {
+//> 	cacheSizeBytes: CACHE_SIZE_UNLIMITED,
+//> });
 
 export default db;

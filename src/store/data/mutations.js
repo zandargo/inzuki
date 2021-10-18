@@ -58,5 +58,9 @@ export function SET_LOG_INDEX(state, valIndex) {
 
 //* -------------------------- SET FIREBASE USER ID -------------------------- */
 export function SET_USERID(state, id) {
-	state.app.userID = id; //.value;
+	state.app.userID = id;
+}
+export function SET_USERINFO(state, user) {
+	state.app.userEmail = user.email;
+	state.app.userName = user.userName;
 }

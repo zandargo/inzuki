@@ -71,16 +71,21 @@
 				<!-- //* Spacer -->
 				<div class="q-mt-xl q-py-sm"></div>
 				<!-- //* Loged in card -->
-				<q-item>
+				<q-item v-if="userID.length > 1">
 					<q-item-section avatar>
-						<q-avatar>
-							<img src="https://cdn.quasar.dev/img/boy-avatar.png" />
-						</q-avatar>
+						<q-avatar
+							dense
+							color="transparent"
+							text-color="black"
+							icon="person"
+							size="45px"
+							font-size="45px"
+						/>
 					</q-item-section>
 
 					<q-item-section>
-						<q-item-label>Title</q-item-label>
-						<q-item-label caption> Subhead </q-item-label>
+						<q-item-label>{{ userName }}</q-item-label>
+						<q-item-label caption> {{ userEmail }} </q-item-label>
 					</q-item-section>
 				</q-item>
 
@@ -203,6 +208,14 @@ export default defineComponent({
 			get: () => $store.state.zData.app.userID,
 			set: () => $store.commit("zData/SET_USERID", userID),
 		});
+		const userName = computed({
+			get: () => $store.state.zData.app.userName,
+			set: () => {},
+		});
+		const userEmail = computed({
+			get: () => $store.state.zData.app.userEmail,
+			set: () => {},
+		});
 
 		const goHome = () => {
 			leftDrawerOpen.value = false;
@@ -217,6 +230,9 @@ export default defineComponent({
 			homeBtnOn,
 			time,
 			log,
+			userID,
+			userName,
+			userEmail,
 
 			toggleLeftDrawer() {
 				leftDrawerOpen.value = !leftDrawerOpen.value;
