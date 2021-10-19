@@ -221,12 +221,12 @@ export default defineComponent({
 		//* GLOBAL DEFS
 		const $store = useStore();
 		//* LOCAL VARIABLES
-		// const time = computed({
-		// 	get: () => $store.state.zData.time,
-		// 	set: () => {
-		// 		$store.commit("zData/SetTime", {}); //! Ativo ???
-		// 	},
-		// });
+		const time = computed({
+			get: () => $store.state.zData.time,
+			set: () => {
+				$store.commit("zData/SetTime", {}); //! Ativo ???
+			},
+		});
 		const log = computed({
 			get: () => $store.state.zData.log,
 			set: () => {

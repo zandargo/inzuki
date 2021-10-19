@@ -136,20 +136,21 @@ export default {
 					email: formData.value.email,
 				});
 			}
-			//> [x] Buscar informações do usuário no doc e jogar no Vuex / Profile
+
 			const userRef = doc(db, "users", userID);
 			const userSnap = await getDoc(userRef);
 			const userInfo = userSnap.data();
-			$store.commit("zData/SET_USERID", userID);
-			$store.commit("zData/SET_USERINFO", userInfo);
+			//_ $store.commit("zData/SET_USERID", userID);
+			$store.commit("zData/mutSetUserID", userID);
+			//_ $store.commit("zData/SET_USERINFO", userInfo);
+			$store.commit("zData/mutSetUserInfo", userInfo);
 			router.push("/home");
+
 			$q.notify({
 				type: "positive",
 				message: "Sign In Success.",
 				position: "center",
-				// color: "primary",
 				textColor: "white",
-				// classes: ["loginok"],
 			});
 		};
 

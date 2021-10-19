@@ -11,3 +11,4 @@ NOTE 		ACTIONS: Ações múltiplas (mod store state e jogar no firebase)
 [ ] ID do log diário: timestamp do dia + "-00" -> Escalonar para versão onde pode haver mais de uma entrada de log diário
 
 *--------------------------------- FIREBASE ---------------------------------
+[x] @LogIn: Buscar informações do usuário no doc e jogar no Vuex / Profile
