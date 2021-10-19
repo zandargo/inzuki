@@ -64,3 +64,8 @@ export function SET_USERINFO(state, user) {
 	state.app.userEmail = user.email;
 	state.app.userName = user.userName;
 }
+
+//* --------------------------- TEST PUSH TO ARRAY --------------------------- */
+export function TESTPUSH(state, payload) {
+	state.aTest.push(payload);
+}

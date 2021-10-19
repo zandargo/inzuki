@@ -26,8 +26,6 @@ enableIndexedDbPersistence(db).catch((err) => {
 	}
 }); // Subsequent queries will use persistence, if it was enabled successfully
 
-// [ ] Verificar se tem usuário logado e jogar no Vuex
-
 //> const firestoreDb = initializeFirestore(app, {
 //> 	cacheSizeBytes: CACHE_SIZE_UNLIMITED,
 //> });

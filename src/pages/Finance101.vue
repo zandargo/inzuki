@@ -22,9 +22,7 @@
 
 						<q-separator inset class="text-h1" />
 
-						<q-card-section>
-							<!-- [ ] Criar resumo da hora extra bruta -->
-						</q-card-section>
+						<q-card-section> </q-card-section>
 					</q-card>
 				</div>
 			</div>

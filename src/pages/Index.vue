@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<!-- [ ] Resumo das HN, HE feitas, HE meta, valor relativo,  -->
 		<q-page class="no-padding no-selection">
 			<div class="column no-padding">
 				<div class="col-4 no-padding">
@@ -20,7 +19,7 @@
 								<div class="column">
 									<div class="col text-caption q-px-sm">Extra</div>
 									<q-separator />
-									<!-- [ ] Adicionar condicional para mostrar valor meta -->
+
 									<div class="col text-body q-px-sm">00,0</div>
 								</div>
 								<!--//> HORAS NORMAIS -->

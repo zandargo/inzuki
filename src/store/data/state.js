@@ -33,7 +33,9 @@ export default function () {
 			formattedDate: "",
 		},
 		db: {
-			baseIncome: 6,
+			baseIncome: 1045,
+			nAHmonth: 220,
 		},
+		aTest: [],
 	};
 }

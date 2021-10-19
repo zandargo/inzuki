@@ -17,7 +17,7 @@
 						<div class="column">
 							<div class="col text-caption q-px-sm">Extra</div>
 							<q-separator />
-							<!-- [ ] Adicionar condicional para mostrar valor meta -->
+
 							<div class="col text-body q-px-sm">00,0</div>
 						</div>
 						<!--//> HORAS NORMAIS -->
