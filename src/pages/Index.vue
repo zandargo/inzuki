@@ -224,7 +224,7 @@ export default defineComponent({
 		const time = computed({
 			get: () => $store.state.zData.time,
 			set: () => {
-				$store.commit("zData/SetTime", {}); //! Ativo ???
+				// $store.commit("zData/SetTime", {}); //! Ativo ???
 			},
 		});
 		const log = computed({
