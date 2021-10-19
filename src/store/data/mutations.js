@@ -1,11 +1,7 @@
 import { format } from "date-fns";
 import { ptBR, en } from "date-fns/locale";
 
-export function SetBaseIncome(state, payload) {
-	console.log("SetBaseIncome");
-	state.db.baseIncome = payload.value;
-}
-
+//* ---------------------------- HELPER FUNCTIONS ---------------------------- */
 // function checkSingleDigit(digit) {
 // 	return ("0" + digit).slice(-2);
 // }
@@ -17,6 +13,11 @@ function joinDate(time, opt, sep) {
 	return opt.map(format).join(sep);
 }
 
+//* ----------------------------- SET BASE INCOME ---------------------------- */
+export function SET_BASE_INCOME(state, payload) {
+	console.log("SetBaseIncome", payload.value);
+	state.db.baseIncome = payload.value;
+}
 //* ---------------------------- SET CURRENT TIME ---------------------------- */
 export function SET_TIME(state) {
 	let date = new Date();

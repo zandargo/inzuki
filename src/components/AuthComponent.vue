@@ -228,54 +228,6 @@ export default {
 	},
 
 	methods: {
-		// submitForm() {
-		// 	if (this.tab === "login") {
-		// 		this.signInExistingUser(
-		// 			this.formData.email,
-		// 			this.formData.password
-		// 		);
-		// 	} else {
-		// 		this.createUser(this.formData.email, this.formData.password);
-		// 	}
-		// },
-		// google() {
-		// 	const provider = new firebase.auth.GoogleAuthProvider();
-		// 	firebase
-		// 		.auth()
-		// 		.signInWithPopup(provider)
-		// 		.then((result) => {
-		// 			console.log("result", result);
-		// 			this.$q.notify({ message: "Sign In Success." });
-		// 			this.$router.push("/home");
-		// 		})
-		// 		.catch((error) => console.log("error", error));
-		// },
-		// signInExistingUser(email, password) {
-		// 	console.log(email, password);
-		// 	firebase
-		// 		.auth()
-		// 		.signInWithEmailAndPassword(email, password)
-		// 		.then((userCredential) => {
-		// 			this.$q.notify({ message: "Sign In Success." });
-		// 			this.$router.push("/home");
-		// 		})
-		// 		.catch((error) => {
-		// 			console.log(error);
-		// 		});
-		// },
-		// createUser(email, password) {
-		// 	console.log(email, password);
-		// 	firebase
-		// 		.auth()
-		// 		.createUserWithEmailAndPassword(email, password)
-		// 		.then((auth) => {
-		// 			this.$q.notify({ message: "Sign In Success." });
-		// 			this.$router.push("/home");
-		// 		})
-		// 		.catch((error) => {
-		// 			console.log(error);
-		// 		});
-		// },
 		forgotPassword() {
 			this.resetPwdDialog = true;
 		},

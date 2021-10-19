@@ -204,7 +204,7 @@
 </template>
 
 <script>
-import { defineComponent, computed, ref, onMounted } from "vue";
+import { defineComponent, watch, computed, ref, onMounted } from "vue";
 import { useStore } from "vuex";
 import { format, formatDistance, formatRelative, subDays } from "date-fns";
 import { ptBR, en } from "date-fns/locale";
@@ -218,13 +218,15 @@ export default defineComponent({
 		};
 	},
 	setup() {
+		//* GLOBAL DEFS
 		const $store = useStore();
-		const time = computed({
-			get: () => $store.state.zData.time,
-			set: () => {
-				$store.commit("zData/SetTime", {}); //! Ativo ???
-			},
-		});
+		//* LOCAL VARIABLES
+		// const time = computed({
+		// 	get: () => $store.state.zData.time,
+		// 	set: () => {
+		// 		$store.commit("zData/SetTime", {}); //! Ativo ???
+		// 	},
+		// });
 		const log = computed({
 			get: () => $store.state.zData.log,
 			set: () => {
@@ -313,7 +315,6 @@ export default defineComponent({
 
 //>	Documento no vídeo-exemplo (blog posts)
 //>	blogCoverPhoto, blogCoverPhotoName, blogHTML, blogID, blogTitle, date, profileID
-//>	2:52:00 -> pega o retorno do createUser e guarda a ID
 //>
 //>	docRef.add(newDocument)
 //>	.addOnSuccessListener({})  e logo em seguida o código do q fazer qnd terminar o write
