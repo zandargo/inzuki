@@ -30,10 +30,23 @@ $accent: #9c27b0;
 
 $dark: #1d1d1d;
 
-$positive: #21ba45;
-$negative: #c10015;
-$info: #31ccec;
-$warning: #f2c037;
+$positive: #4caf50;
+$negative: #f44336;
+$info: #3f51b5;
+$warning: #ffc107;
+
+//* Esquema de cores original
+// $bgToday: #ab47bc;
+// $bgWorkDay: #fffde7;
+// $bgFreeDay: #dcedc8;
+// $bgHollyday: #b3e5fc;
+
+//* Esquema de cores 01
+$bgToday: #0077b5;
+$bgWorkDay: #fafafa;
+// $bgFreeDay: #a5d6a7;
+$bgFreeDay: #c8e6c9;
+$bgHollyday: #bbdefb;
 
 // //* ------------------------------------------------------------------------ *//
 // //*                             QUASAR VARIABLES                             *//
@@ -219,7 +232,7 @@ $body2: (
 ) !default;
 $overline: (
 	size: 0.75rem,
-	line-height: 2rem,
+	line-height: 1.25rem,
 	letter-spacing: 0.16667em,
 	weight: 500,
 ) !default;
@@ -373,7 +386,7 @@ $shadows: (
 	// $shadow-24
 );
 
-// $generic-border-radius: 4px !default;
+$generic-border-radius: 6px !default;
 // $generic-hover-transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1) !default;
 // $typography-font-family: "Roboto", "-apple-system", "Helvetica Neue", Helvetica,
 // 	Arial, sans-serif !default;

@@ -1,9 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
-// Follow this pattern to import other Firebase services
-// import { } from 'firebase/<service>';
-import {} from "firebase/firestore";
-import {} from "firebase/auth";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { enableIndexedDbPersistence } from "firebase/firestore";
+import { initializeFirestore, CACHE_SIZE_UNLIMITED } from "firebase/firestore";
+// import {} from "firebase/auth";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyCeb0rJRxG3o-TOcFAdr_9o5uffrLQXeis",
@@ -16,14 +15,19 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 const db = getFirestore(app);
 
-// Get a list of cities from your database
-async function getCities(db) {
-	const citiesCol = collection(db, "cities");
-	const citySnapshot = await getDocs(citiesCol);
-	const cityList = citySnapshot.docs.map((doc) => doc.data());
-	return cityList;
-}
+enableIndexedDbPersistence(db).catch((err) => {
+	if (err.code == "failed-precondition") {
+		// Multiple tabs open, persistence can only be enabled in one tab at a a time.
+	} else if (err.code == "unimplemented") {
+		// The current browser does not support all of the features required to enable persistence
+	}
+}); // Subsequent queries will use persistence, if it was enabled successfully
+
+//> const firestoreDb = initializeFirestore(app, {
+//> 	cacheSizeBytes: CACHE_SIZE_UNLIMITED,
+//> });
 
 export default db;

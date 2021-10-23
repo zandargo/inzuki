@@ -3,39 +3,35 @@
 		<q-page class="no-padding no-selection">
 			<div class="column no-padding">
 				<div class="col-4 no-padding">
-					<!-- //* ------------------------------------------------------------------------ *// -->
-					<!-- //*                           CARD CONTAINER RESUMO                          *// -->
-					<!-- //* ------------------------------------------------------------------------ *// -->
 					<q-card class="title-card q-ma-sm q-px-none" bordered elevated>
 						<q-card-section class="text-center text-bold text-h5 q-pa-xs">
 							{{ log.currentMonth }} / {{ log.currentYear }}
 						</q-card-section>
 
 						<q-separator />
-						<!--//* 			RESUMO DO PERÍODO 		-->
+						<!-- RESUMO DO PERÍODO -->
 						<q-card-section class="text-center q-pa-xs text-center">
 							<div class="row flex flex-center">
-								<!--//> HORAS EXTRAS -->
+								<!-- HORAS EXTRAS -->
 								<div class="column">
 									<div class="col text-caption q-px-sm">Extra</div>
 									<q-separator />
-
 									<div class="col text-body q-px-sm">00,0</div>
 								</div>
-								<!--//> HORAS NORMAIS -->
+								<!-- HORAS NORMAIS -->
 								<div class="column">
 									<div class="col text-caption q-px-sm">Normal</div>
 									<q-separator />
 									<div class="col text-body q-px-sm">00,0</div>
 								</div>
-								<!--//> HORAS NÃO REALIZADAS -->
+								<!-- HORAS NÃO REALIZADAS -->
 								<div class="column">
 									<div class="col text-caption q-px-sm">Atraso</div>
 									<q-separator />
 									<div class="col text-body q-px-sm">00,0</div>
 								</div>
 								<q-separator vertical />
-								<!--//> VALOR ATUAL -->
+								<!-- VALOR ATUAL -->
 								<div class="column">
 									<div class="col text-caption q-px-sm">Atual</div>
 									<q-separator />
@@ -44,13 +40,13 @@
 										0000
 									</div>
 								</div>
-								<!--//> VALOR META -->
+								<!-- VALOR META -->
 								<!-- <div class="column">
 									<div class="col text-caption q-px-sm">Meta</div>
 									<q-separator />
 									<div class="col text-body q-px-sm">R$ 0,00</div>
 								</div> -->
-								<!--//> VALOR MÁXIMO -->
+								<!-- VALOR MÁXIMO -->
 								<div class="column">
 									<div class="col text-caption q-px-md">Máx</div>
 									<q-separator />
@@ -65,37 +61,9 @@
 				</div>
 
 				<q-separator size="2px" />
-				<!-- <div class="col-auto column q-pa-xs">
-					<q-card
-						class="
-							no-margin
-							row
-							q-py-xs q-px-md
-							justify-between
-							bg-blue-grey-3
-						"
-						bordered
-						elevated
-					>
-						<div class="col-1 text-center text-h6">Dia</div>
-						<div class="col-3 text-center text-h6">Entrada</div>
-						<div class="col-3 text-center text-h6">Saída</div>
-						<div class="col-2 text-center text-h6">Extra</div>
-					</q-card>
-				</div> -->
+
 				<div class="col-8 items-stretch column q-pa-xs">
-					<!-- //* ------------------------------------------------------------------------ *// -->
-					<!-- //*                      CARD LISTA DE DIAS DE TRABALHO                      *// -->
-					<!-- //* ------------------------------------------------------------------------ *// -->
 					<q-card class="no-margin fit-parent" bordered elevated>
-						<!-- //* --------------------------- BARRA DE TÍTULOS --------------------------- *// -->
-						<!-- <q-card-section class="q-py-sm text-center"
-							>TESTE...
-						</q-card-section>
-						<q-separator /> -->
-						<!-- //* -------------------------- CALENDÁRIO DE DIAS -------------------------- *// -->
-						<!-- <q-card-section class="q-pa-none"> -->
-						<!-- <div> -->
 						<q-virtual-scroll
 							ref="vlRef"
 							component="q-list"
@@ -106,6 +74,8 @@
 							separator
 							color="inzuki"
 							class="text-inzuki"
+							virtual-scroll-slice-ratio-before="4"
+							virtual-scroll-slice-ratio-after="4"
 						>
 							<template v-slot="{ item, index }">
 								<q-item
@@ -117,7 +87,6 @@
 										'is-hollyday': false,
 										'is-today': index == time.todayIndex,
 									}"
-									class="row"
 								>
 									<q-item-section class="col-1 items-center text-h6">
 										<!-- DIA DA SEMANA -->
@@ -137,45 +106,55 @@
 									<q-item-section class="">
 										<!-- LINHA ENTRADA -->
 										<q-item-label class="text-body q-px-none">
-											<div class="row justify-center">
-												<!-- <div class="col-3 text-h6">00:00</div> -->
-												<!-- {{ item.strDate }} -->
-												<!-- <div class="col-grow text-body text-center">
-													12:30
-												</div> -->
-												<q-btn
-													round
-													padding="none"
-													flat
-													size="md"
-													icon="add"
-												/>
-												<div class="q-px-md text-h5">00:00</div>
-												<q-btn
-													round
-													padding="none"
-													flat
-													size="md"
-													icon="remove"
-												/>
-												<!-- <div class="col-grow"></div>
-												<q-separator vertical />
-												<div class="col-grow"></div>
-												<q-btn
-													round
-													padding="none"
-													flat
-													size="md"
-													icon="add"
-												/>
-												<div class="q-px-none text-h5">00:00</div>
-												<q-btn
-													round
-													padding="none"
-													flat
-													size="md"
-													icon="remove"
-												/> -->
+											<div class="row justify-between">
+												<div class="col-3 text-h6">Entrada</div>
+												<div class="col-grow text-body text-center">
+													<!-- {{ item.strDate }} -->
+													00:00
+												</div>
+												<div class="col-shrink">
+													<q-btn
+														round
+														padding="none"
+														flat
+														size="12px"
+														icon="add"
+													/>
+													<q-btn
+														round
+														padding="none"
+														flat
+														size="12px"
+														icon="remove"
+													/>
+												</div>
+											</div>
+										</q-item-label>
+										<q-separator />
+
+										<!-- LINHA SAÍDA -->
+										<q-item-label class="">
+											<div class="row justify-between">
+												<div class="col-3 text-h6">Saída</div>
+												<div class="col-grow text-body text-center">
+													00:00
+												</div>
+												<div class="col-shrink">
+													<q-btn
+														round
+														padding="none"
+														flat
+														size="12px"
+														icon="add"
+													/>
+													<q-btn
+														round
+														padding="none"
+														flat
+														size="12px"
+														icon="remove"
+													/>
+												</div>
 											</div>
 										</q-item-label>
 									</q-item-section>
@@ -194,8 +173,6 @@
 								</q-item>
 							</template>
 						</q-virtual-scroll>
-						<!-- </div> -->
-						<!-- </q-card-section> -->
 					</q-card>
 				</div>
 			</div>
@@ -204,7 +181,7 @@
 </template>
 
 <script>
-import { defineComponent, watch, computed, ref, onMounted } from "vue";
+import { defineComponent, computed, ref, onMounted } from "vue";
 import { useStore } from "vuex";
 import { format, formatDistance, formatRelative, subDays } from "date-fns";
 import { ptBR, en } from "date-fns/locale";
@@ -218,13 +195,11 @@ export default defineComponent({
 		};
 	},
 	setup() {
-		//* GLOBAL DEFS
 		const $store = useStore();
-		//* LOCAL VARIABLES
 		const time = computed({
 			get: () => $store.state.zData.time,
 			set: () => {
-				// $store.commit("zData/SetTime", {}); //! Ativo ???
+				$store.commit("zData/SetTime", {}); //! Ativo ???
 			},
 		});
 		const log = computed({
@@ -234,10 +209,10 @@ export default defineComponent({
 			},
 		});
 
-		const maxSize = 2500;
+		const maxSize = 10000;
 		const worklog = [];
 
-		let startDate = new Date(2021, 0, 1, 12, 0, 0, 0);
+		let startDate = new Date(2015, 0, 1, 12, 0, 0, 0);
 		let currentDate = new Date();
 		for (let i = 0; i < maxSize; i++) {
 			currentDate = startDate.valueOf() + i * 86400000;
@@ -300,25 +275,6 @@ export default defineComponent({
 //> 		: { 'background-color': '#F1F8E9' },
 //> 	true ? {} : {},
 //> ]"
-
-//! Adicionar entrada
-//> 	Vue filters ?
-//> 	Criar método adic/modificar valor
-//> 	Criar um push no array de registros
-//! Questões
-//> 	Gerar lista completa no Vuex? -> Puxar a lista no Index?
-//> 	Apagar entradas?
-//> 	Criar método para apagar e passar o item do v-for para poder puxar a chave
-//> 	findIndex
-//>	classe slow/slower para reduzir animações
-//! Importante: criar sistemática de ter array apenas com os dias preenchidos, para reduzir acessos ao firebase
-
-//>	Documento no vídeo-exemplo (blog posts)
-//>	blogCoverPhoto, blogCoverPhotoName, blogHTML, blogID, blogTitle, date, profileID
-//>
-//>	docRef.add(newDocument)
-//>	.addOnSuccessListener({})  e logo em seguida o código do q fazer qnd terminar o write
-//>
 </script>
 
 <style lang="scss" scoped>

@@ -19,6 +19,10 @@
 								input-class="text-right text-h5"
 							/>
 						</q-card-section>
+
+						<q-separator inset class="text-h1" />
+
+						<q-card-section> </q-card-section>
 					</q-card>
 				</div>
 			</div>
@@ -37,7 +41,7 @@ export default {
 		const baseIncome = computed({
 			get: () => $store.state.zData.db.baseIncome,
 			set: (value) => {
-				$store.commit("zData/SetBaseIncome", { value });
+				$store.commit("zData/SET_BASE_INCOME", { value });
 			},
 		});
 
