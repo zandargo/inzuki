@@ -66,9 +66,6 @@
 </template>
 
 <script>
-// import firebase from "firebase/app";
-// import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
 import { useQuasar } from "quasar";
 import { ref } from "vue";
 import { useStore } from "vuex";
@@ -90,13 +87,7 @@ export default {
 	props: ["tab", "tabLabel"],
 	components: { ForgotPassword },
 	data() {
-		return {
-			// formData: {
-			// 	email: "",
-			// 	password: "",
-			// },
-			// resetPwdDialog: false,
-		};
+		return {};
 	},
 	setup(props) {
 		//* ------------------------------ DATA VALUES ----------------------------- *//

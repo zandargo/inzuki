@@ -36,6 +36,6 @@ export default function () {
 			baseIncome: 1045,
 			nAHmonth: 220,
 		},
-		aTest: [],
+		aTest: [], // [ ] Testar push de registros
 	};
 }

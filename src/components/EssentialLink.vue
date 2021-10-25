@@ -43,6 +43,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+//> Caps
 .z-caps {
 	// font-variant-caps: small-caps;
 	text-transform: uppercase;

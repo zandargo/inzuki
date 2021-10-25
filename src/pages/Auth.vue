@@ -33,7 +33,7 @@ export default {
 	components: { AuthComponent },
 	data() {
 		return {
-			tab: "login",
+			tab: "login", // NOTE Mudar p/ composition API?
 		};
 	},
 };

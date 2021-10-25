@@ -205,6 +205,7 @@ export default defineComponent({
 			set: () => $store.commit("zData/SET_LOG_INDEX", { value }),
 		});
 		//* ------------------------------- USER INFO ------------------------------ *//
+		// [ ] Reunir informações em um único objeto
 		const userID = computed({
 			get: () => $store.state.zData.app.userID,
 			set: () => $store.commit("zData/SET_USERID", userID),

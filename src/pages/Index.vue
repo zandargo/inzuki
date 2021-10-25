@@ -253,7 +253,7 @@ export default defineComponent({
 		}
 
 		const vlRef = ref(null);
-		const vlIndex = ref(2440);
+		const vlIndex = ref(2440); // [ ] Puxar vlIndex do Vuex?
 		const sPeriod = ref("");
 
 		const setCurrentIndex = (value) =>

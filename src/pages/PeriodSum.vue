@@ -42,7 +42,7 @@
 								0000
 							</div>
 						</div>
-						<!--//> VALOR META -->
+						<!--//> VALOR META (CASO DEFINIDO)-->
 						<!-- <div class="column">
 									<div class="col text-caption q-px-sm">Meta</div>
 									<q-separator />

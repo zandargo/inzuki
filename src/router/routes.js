@@ -97,7 +97,7 @@ const routes = [
 			title: "",
 		},
 	},
-	// Always leave this as last one,
+	//! Always leave this as last one,
 	// but you can also remove it
 	{
 		name: "NotFound",

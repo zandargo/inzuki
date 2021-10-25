@@ -45,11 +45,11 @@ export default defineComponent({
 @import "./css/quasar.variables.scss";
 @font-face {
 	font-family: "RobotoCondensed";
-	//_ src: url('./assets/fonts/RobotoCondensed-Regular.ttf') format('truetype');
 	src: url("../public/fonts/RobotoCondensed-Regular.ttf") format("truetype");
+	//_ src: url('./assets/fonts/RobotoCondensed-Regular.ttf') format('truetype');
 }
 * {
-	font-family: "RobotoCondensed";
+	font-family: "RobotoCondensed, Arial";
 	letter-spacing: 0.08em;
 }
 </style>

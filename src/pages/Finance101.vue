@@ -47,16 +47,6 @@ export default {
 
 		return { baseIncome };
 	},
-	// computed: {
-	// 	baseIncome: {
-	// 		get() {
-	// 			return this.$store.state.data.db.baseIncome;
-	// 		},
-	// 		set(value) {
-	// 			this.$store.data.commit("SetBaseIncome", { value });
-	// 		},
-	// 	},
-	// },
 };
 </script>
 
