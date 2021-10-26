@@ -1,0 +1,16 @@
+GERAL:
+  ☐ Criar definição da carga mensal de horas (220, editável)
+  ☐ Criar resumo da hora extra bruta
+
+  VUEX:
+    ☐ Calcular valor da hora extra bruta (editável)
+    ☐ No doc de log diário, deve haver uma var indicando se o valor (bruto) é manual ou editado
+    ☐ Chaves do log diário: type, valHrs, valBrt, valLiq
+    ☐ ID do log diário: timestamp do dia + "-00" -> Escalonar para versão onde pode haver mais de uma entrada de log diário
+    ☐ Criar Getter: Filtro por período
+    ☐ Criar Action: Ações múltiplas (mod store state e jogar no firebase)
+
+  FIREBASE:
+    ✔ @ LogIn: Buscar informações do usuário no doc e jogar no Vuex / Profile @1h @done(21-10-22 14:56)
+
+Archive:
