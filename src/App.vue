@@ -48,8 +48,4 @@ export default defineComponent({
 	src: url("../public/fonts/RobotoCondensed-Regular.ttf") format("truetype");
 	//_ src: url('./assets/fonts/RobotoCondensed-Regular.ttf') format('truetype');
 }
-* {
-	font-family: "RobotoCondensed, Arial";
-	letter-spacing: 0.08em;
-}
 </style>

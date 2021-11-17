@@ -1,6 +1,11 @@
 // app global css in SCSS form
+
+// * {
+// 	letter-spacing: 0.08em;
+// }
 * {
 	/* Hide scrollbar for Chrome, Safari and Opera */
+	font-family: "RobotoCondensed", Arial;
 	::-webkit-scrollbar {
 		display: none;
 	}
